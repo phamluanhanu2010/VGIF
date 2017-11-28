@@ -1,0 +1,18 @@
+package com.strategy.intecom.vtc.vgift.model;
+
+import java.io.Serializable;
+
+/**
+ * Created by ThuyChi on 9/21/2016.
+ */
+public class BanerItem implements Serializable {
+    public String imgUrlBaner;
+
+    public String getImgUrlBaner() {
+        return imgUrlBaner;
+    }
+
+    public void setImgUrlBaner(String imgUrlBaner) {
+        this.imgUrlBaner = imgUrlBaner;
+    }
+}

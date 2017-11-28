@@ -1,0 +1,194 @@
+package com.strategy.intecom.vtc.vgift.view;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+
+import java.util.Date;
+import java.util.Random;
+
+/**
+ * Created by ThuyChi on 10/5/2016.
+ */
+public class FMSpinning extends Fragment implements View.OnClickListener {
+    private View viewRoot;
+    private int startAngle = 0;
+    private RelativeLayout loutCircle;
+    private ProgressBar progressBar;
+    private TextView tvTime, tvSeconds, tvMinutes, tvHours;
+    private int pStatus = 600000;
+    private Handler handler = new Handler();
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        viewRoot = inflater.inflate(R.layout.ui_spinning, container, false);
+        return viewRoot;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        AppBase.showLog("onViewCreated - FMSpinning");
+
+        initController(view);
+    }
+
+    private void initController(View view) {
+
+        RelativeLayout btnSpinning = (RelativeLayout) view.findViewById(R.id.btn_Spinning);
+        btnSpinning.setOnClickListener(this);
+
+        loutCircle = (RelativeLayout) view.findViewById(R.id.lout_circle);
+        loutCircle.setOnClickListener(this);
+
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        tvTime = (TextView) view.findViewById(R.id.tv_Time);
+
+        tvHours = (TextView) view.findViewById(R.id.tv_hours);
+        tvMinutes = (TextView) view.findViewById(R.id.tv_minutes);
+        tvSeconds = (TextView) view.findViewById(R.id.tv_Seconds);
+
+        initCountDown();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_Spinning:
+                animatRotate();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void animatRotate() {
+        Random rand = new Random();
+        int n = rand.nextInt(360);
+        initAngleData(n);
+        Log.d("Random Number: ", String.valueOf(n));
+        Animation rotation = new RotateAnimation((float) startAngle, n + 5400, RotateAnimation.RELATIVE_TO_SELF, 0.5f,
+                RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+        rotation.setDuration(10000);
+        rotation.setFillEnabled(true);
+        rotation.setFillAfter(true);
+        rotation.setInterpolator(new DecelerateInterpolator());
+        rotation.setZAdjustment(1);
+        rotation.setInterpolator(new FastOutSlowInInterpolator());
+        loutCircle.startAnimation(rotation);
+        startAngle = n;
+    }
+
+    private void initAngleData(int n) {
+        int i = 0;
+        if ((330 <= n) && (n >= 30)) i = 1;
+        if ((30 < n) && (n <= 90)) i = 6;
+        if ((90 < n) && (n <= 150)) i = 5;
+        if ((150 < n) && (n <= 210)) i = 4;
+        if ((210 < n) && (n <= 270)) i = 3;
+        if ((270 < n) && (n <= 330)) i = 2;
+
+        Toast.makeText(getContext(), String.valueOf(i), Toast.LENGTH_SHORT).show();
+        switch (i) {
+            case 1:
+
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+        }
+    }
+
+    private void initCountDown() {
+        // progress bar
+
+        progressBar.setProgress(0);   // Main Progress
+        progressBar.setSecondaryProgress(100); // Secondary Progress
+        progressBar.setMax(600000); // Maximum Progress
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                while (pStatus > 0) {
+                    pStatus -= 1000;
+                    AppBase.showLog("---------Count----------" + pStatus);
+                    handler.post(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            progressBar.setProgress(pStatus);
+                            tvTime.setText(pStatus + "%");
+                            long count = pStatus;
+                            long hours = count / (60 * 60 * 1000);
+                            count -= hours * (60 * 60 * 1000);
+                            long minutes = count / (60 * 1000);
+                            count -= minutes * (60 * 1000);
+                            long seconds = count / 1000;
+
+                            tvHours.setText("" + String.format("%02d:", hours));
+                            tvMinutes.setText("" + String.format("%02d:", minutes));
+                            tvSeconds.setText("" + String.format("%02d", seconds));
+
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        // Just to display the progress slowly
+                        Thread.sleep(1000); //thread will take approx 1.5 seconds to finish
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+        // progress bar
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        AppBase.showLog("onResume - FMSpinning");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        AppBase.showLog("onPause - FMSpinning");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AppBase.showLog("onStop - FMSpinning");
+    }
+}

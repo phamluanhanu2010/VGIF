@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/lout_Bar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_Blue_Light">
+
+        <ImageView
+            android:id="@+id/img_Back"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/size_Margin_Header_Icon"
+            android:src="@mipmap/ic_back" />
+
+        <TextView
+            android:id="@+id/tv_Titile_View"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerInParent="true"
+            android:text="@string/title_View_GAME_INFO" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView_Wrap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Content_Game_Info_Header">
+
+                <ImageView
+                    android:id="@+id/img_Game_Info_Banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Banner_h"
+                    android:src="@drawable/ic_placeholder"
+                    android:background="@color/color_PlaceHolder" />
+
+                <ImageView
+                    android:id="@+id/img_Game_Info_Avatar"
+                    android:layout_width="@dimen/size_Image_Avatar_Game"
+                    android:layout_height="@dimen/size_Image_Avatar_Game"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:background="@drawable/ic_placeholder" />
+
+                <ImageView
+                    android:layout_width="@dimen/size_Image_Avatar_Game"
+                    android:layout_height="@dimen/size_Image_Avatar_Game"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_while_border_corner_lout" />
+
+                <TextView
+                    android:id="@id/tv_Game_Name"
+                    style="@style/CusTextViewTitileTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_Game_Info_Banner"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:layout_toRightOf="@+id/img_Game_Info_Avatar"
+                    android:text="Vua sân cỏ" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/lout_Fanpage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_btn_main_h"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/content_Game_Info_Fanpage"
+                        android:textColor="@color/color_Blue_Facebook"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="@dimen/size_btn_main_h"
+                        android:layout_height="@dimen/size_btn_main_h"
+                        android:background="@drawable/ic_facebook" />
+                </LinearLayout>
+
+                <Button
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/btn_download"
+                    android:layout_width="@dimen/size_btn_main_w"
+                    android:layout_height="@dimen/size_btn_main_h"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_button_red"
+                    android:drawableLeft="@mipmap/ic_download"
+                    android:paddingLeft="@dimen/size_Margin_Space"
+                    android:text="DOWNLOAD"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/btn_PlayNow"
+                    android:layout_width="130dp"
+                    android:layout_height="@dimen/size_btn_main_h"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_button_green"
+                    android:drawableLeft="@mipmap/ic_joystick"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/size_Margin_Space"
+                    android:text="Chơi ngay"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@drawable/cus_shade_bottom_2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space">
+
+                <TextView
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="@dimen/size_Content_Game_Info_w"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/content_Game_Info_Type" />
+
+                <TextView
+                    android:id="@+id/tv_Game_Type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:layout_marginRight="@dimen/size_Margin_Space" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space">
+
+                <TextView
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="@dimen/size_Content_Game_Info_w"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/content_Game_Info_Date" />
+
+                <TextView
+                    android:id="@+id/tv_PublishDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:layout_marginRight="@dimen/size_Margin_Space" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space">
+
+                <TextView
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="@dimen/size_Content_Game_Info_w"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/content_Game_Info_System" />
+
+                <TextView
+                    android:id="@+id/tv_Ios"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:layout_marginRight="@dimen/size_Margin_Space" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space">
+
+                <TextView
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="@dimen/size_Content_Game_Info_w"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/content_Game_Info_Capacity" />
+
+                <TextView
+                    android:id="@+id/tv_Capacity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:layout_marginRight="@dimen/size_Margin_Space" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:paddingBottom="@dimen/size_Margin_Space">
+
+                <TextView
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="@dimen/size_Content_Game_Info_w"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="@string/content_Game_Info_Description" />
+
+                <TextView
+                    android:id="@+id/tv_Description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:layout_marginRight="@dimen/size_Margin_Space" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

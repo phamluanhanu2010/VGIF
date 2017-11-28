@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/swipeLayoutSimple"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_Noti_w">
+        <!-- Bottom View Start-->
+        <RelativeLayout
+            android:id="@+id/right_Wrapper"
+            android:layout_width="@dimen/size_Noti_w"
+            android:layout_height="match_parent"
+            android:background="@color/color_Red_Dark"
+            android:orientation="horizontal">
+            <!--What you want to show-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_Delete"
+                    android:layout_width="@dimen/size_Icon_Footer_h"
+                    android:layout_height="@dimen/size_Icon_Footer_h"
+                    android:background="@drawable/ic_delete" />
+
+                <TextView
+                    android:id="@+id/ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/content_Noti_Cancel"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+        <!-- Bottom View End-->
+
+        <!-- Surface View Start -->
+        <LinearLayout
+            android:id="@+id/lout_Content_Email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+            <!--What you want to show in SurfaceView-->
+            <ImageView
+                android:id="@+id/img_Baner_Noti"
+                android:layout_width="@dimen/size_Noti_w"
+                android:layout_height="@dimen/size_Noti_w"
+                android:padding="@dimen/size_Margin_Space" />
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@+id/img_Check_Read_Noti"
+                    android:gravity="center_vertical">
+
+
+                    <TextView
+                        android:id="@+id/tv_Game_Titile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chân Long Mobile "
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/tv_Time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_Game_Titile"
+                        android:lines="1"
+                        android:text="@string/content_Noti_Minutes" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/img_Check_Read_Noti"
+                    android:layout_width="@dimen/size_Margin_Space"
+                    android:layout_height="@dimen/size_Margin_Space"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:layout_marginRight="@dimen/size_Margin_Space"
+                    android:background="@drawable/circle_shape_noti_unread" />
+            </RelativeLayout>
+
+        </LinearLayout>
+        <!-- Surface View End -->
+    </com.daimajia.swipe.SwipeLayout>
+</LinearLayout>

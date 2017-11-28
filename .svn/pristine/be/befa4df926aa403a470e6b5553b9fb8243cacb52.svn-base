@@ -1,0 +1,267 @@
+package com.strategy.intecom.vtc.vgift.view;
+
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.adapter.AdtHistory;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.common.VtcString;
+import com.strategy.intecom.vtc.vgift.connection.VtcConnection;
+import com.strategy.intecom.vtc.vgift.connection.VtcHttpConnection;
+import com.strategy.intecom.vtc.vgift.enums.TypeActionConnection;
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.interfaces.RequestListener;
+import com.strategy.intecom.vtc.vgift.model.HistoryItem;
+import com.strategy.intecom.vtc.vgift.utils.ConstParam;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class FMHistory extends Fragment implements View.OnClickListener, RequestListener {
+    private View viewRoot;
+    private Callback callback;
+    private DatePickerDialog fromDatePickerDialog;
+    private DatePickerDialog toDatePickerDialog;
+    private TextView tvFromDate;
+    private TextView tvToDate;
+    private ListView listViewHistory;
+    private AdtHistory mAdapter;
+    private VtcConnection vtcConnection;
+    private Date fromDate;
+    private Date toDate;
+    private SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+    private String stdFromDate;
+    private String stdToDate;
+    private String typeHistory = "";
+
+
+    public FMHistory() {
+
+    }
+
+    @SuppressLint("ValidFragment")
+    public FMHistory(Callback callback) {
+        this.callback = callback;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        viewRoot = inflater.inflate(R.layout.ui_history, container, false);
+        return viewRoot;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Bundle bundle = new Bundle();
+        bundle = this.getArguments();
+        if (bundle.getString(ConstParam.BUNDLE_KEY_SPINNING_HISTORY) != null) {
+            typeHistory = bundle.getString(ConstParam.BUNDLE_KEY_SPINNING_HISTORY);
+        }
+
+        initController(view);
+    }
+
+    private void initController(View view) {
+        vtcConnection = new VtcConnection(getContext(), this);
+
+        ImageView imgBack = (ImageView) view.findViewById(R.id.img_Back);
+        imgBack.setOnClickListener(this);
+
+        listViewHistory = (ListView) view.findViewById(R.id.lst_History);
+        TextView tvView = (TextView) view.findViewById(R.id.tv_View);
+        tvView.setOnClickListener(this);
+
+        RelativeLayout loutFromDate = (RelativeLayout) view.findViewById(R.id.lout_Date_From);
+        loutFromDate.setOnClickListener(this);
+
+        RelativeLayout loutToDate = (RelativeLayout) view.findViewById(R.id.lout_Date_To);
+        loutToDate.setOnClickListener(this);
+
+        tvFromDate = (TextView) view.findViewById(R.id.tv_From_Date);
+        tvToDate = (TextView) view.findViewById(R.id.tv_To_Date);
+
+        Calendar calendar = Calendar.getInstance();
+        fromDatePickerDialog = new DatePickerDialog(getContext(), new OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                AppBase.showLog("year:" + year + "monthOfYear" + monthOfYear + "dayOfMonth" + dayOfMonth);
+
+                try {
+                    int month = monthOfYear + 1;
+                    stdFromDate = dayOfMonth + "/" + month + "/" + year;
+                    tvFromDate.setText(stdFromDate);
+                    fromDate = formatDate.parse(stdFromDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
+
+        toDatePickerDialog = new DatePickerDialog(getContext(), new OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                AppBase.showLog("year:" + year + "monthOfYear" + monthOfYear + "dayOfMonth" + dayOfMonth);
+
+                try {
+                    int month = monthOfYear + 1;
+                    stdToDate = dayOfMonth + "/" + month + "/" + year;
+                    tvToDate.setText(stdToDate);
+                    toDate = formatDate.parse(stdToDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
+
+        String jsonString = "{'list' : [{'date': '21/9/2016','game': 'thien long','code': 'dsjkfhds83'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'}]}";
+    }
+
+    private void initData(JSONArray jsonArrayPackage) {
+        List<HistoryItem> lst = new ArrayList<>();
+        for (int i = 0; i < jsonArrayPackage.length(); i++) {
+            HistoryItem item = new HistoryItem();
+            long date = jsonArrayPackage.optJSONObject(i).optLong(ConstParam.RECEIVE_DATE);
+            item.setDate(AppBase.longToDateTime(date));
+            item.setGame(jsonArrayPackage.optJSONObject(i).optString(ConstParam.NAME_GAME));
+            item.setUser(jsonArrayPackage.optJSONObject(i).optString(ConstParam.ACCOUNT_NAME));
+            item.setReward(jsonArrayPackage.optJSONObject(i).optString(ConstParam.TYPE_REWARD_STRING));
+            AppBase.showLog("json" + jsonArrayPackage.optJSONObject(i).optString("date"));
+            lst.add(item);
+        }
+        mAdapter = new AdtHistory(getContext(), R.layout.tmp_item_history, lst);
+        listViewHistory.setAdapter(mAdapter);
+        listViewHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AppBase.showLog(String.valueOf(position));
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.lout_Date_From:
+                fromDatePickerDialog.show();
+                break;
+
+            case R.id.lout_Date_To:
+                toDatePickerDialog.show();
+                break;
+            case R.id.tv_View:
+                if ((toDate != null) && (fromDate != null)) {
+                    if (toDate.after(fromDate)) {
+                        if (typeHistory.equals(VtcString.SPINNING_HISTORY_ACCOUNT)) {
+                            getRewardOfAccount(stdFromDate, stdToDate, 0, 100);
+                        } else if (typeHistory.equals(VtcString.SPINNING_HISTORY_ALL)) {
+                            getRewardAll(stdFromDate, stdToDate, 0, 100);
+                        }
+
+                    } else {
+                        Toast.makeText(getContext(), "Chọn ngày chưa đúng", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Chưa chọn ngày", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.img_Back:
+                AppBase.initBack();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void getRewardOfAccount(String fromDate, String toDate, int currentPage, int litmit) {
+        Map<String, String> mapHistoryAccount = new HashMap<>();
+        mapHistoryAccount.put(ConstParam.PARAM_REQUEST_FROM, fromDate);
+        mapHistoryAccount.put(ConstParam.PARAM_REQUEST_TO, toDate);
+        mapHistoryAccount.put(ConstParam.PARAM_REQUEST_PAGE, String.valueOf(currentPage));
+        mapHistoryAccount.put(ConstParam.PARAM_REQUEST_LIMIT, String.valueOf(litmit));
+        mapHistoryAccount.put(ConstParam.PARAM_REQUEST_ACCESS_TOKEN, VtcString.ACCESS_TOKEN);
+        mapHistoryAccount.put(ConstParam.PARAM_REQUEST_USERNAME, VtcString.USER_NAME);
+        mapHistoryAccount.put(ConstParam.PARAM_REQUEST_ACCOUNT_ID, VtcString.ACCOUNT_ID);
+
+        vtcConnection.onExcuteProcess(TypeActionConnection.TYPE_ACTION_GET_REWARD_ACCOUNT, RequestListener.API_CONNECTION_GET_LIST_REWARD_ACCOUNT + VtcHttpConnection.urlEncodeUTF8(mapHistoryAccount), false);
+    }
+
+    private void getRewardAll(String fromDate, String toDate, int currentPage, int litmit) {
+        Map<String, String> mapHistoryAll = new HashMap<>();
+        mapHistoryAll.put(ConstParam.PARAM_REQUEST_FROM, fromDate);
+        mapHistoryAll.put(ConstParam.PARAM_REQUEST_TO, toDate);
+        mapHistoryAll.put(ConstParam.PARAM_REQUEST_PAGE, String.valueOf(currentPage));
+        mapHistoryAll.put(ConstParam.PARAM_REQUEST_LIMIT, String.valueOf(litmit));
+
+        vtcConnection.onExcuteProcess(TypeActionConnection.TYPE_ACTION_GET_REWARD_ALL, RequestListener.API_CONNECTION_GET_LIST_REWARD_ALL + VtcHttpConnection.urlEncodeUTF8(mapHistoryAll), false);
+
+    }
+
+    @Override
+    public void onPostExecuteError(TypeActionConnection keyType, String errorcode, String msg, String info, String reponseFullData) {
+
+    }
+
+    @Override
+    public void onPostExecuteSuccess(TypeActionConnection keyType, String response, String reponseFullData) {
+        switch (keyType) {
+            case TYPE_ACTION_GET_REWARD_ALL:
+                AppBase.showLog("TYPE_ACTION_GET_REWARD_ALL: " + response);
+                try {
+                    JSONArray jsonArrayData = new JSONArray(response);
+                    if (jsonArrayData.length() > 0) {
+                        AppBase.showLog("TYPE_ACTION_GET_REWARD_ALL2: " + jsonArrayData.length());
+                        initData(jsonArrayData);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            case TYPE_ACTION_GET_REWARD_ACCOUNT:
+                AppBase.showLog("TYPE_ACTION_GET_REWARD_ALL: " + response);
+                try {
+                    JSONArray jsonArrayData = new JSONArray(response);
+                    if (jsonArrayData.length() > 0) {
+                        AppBase.showLog("TYPE_ACTION_GET_REWARD_ALL2: " + jsonArrayData.length());
+                        initData(jsonArrayData);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+        }
+    }
+}

@@ -1,0 +1,54 @@
+<resources>
+
+    <string name="gcm_Sender_Id">1088997532662</string>
+
+    <string name="app_name">VGift</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="navigation_Menu_Home">Trang chủ</string>
+    <string name="navigation_Menu_Game_List">Danh sách game</string>
+    <string name="navigation_Menu_Wheel">Vòng quay may mắn</string>
+    <string name="navigation_Menu_Profile">Tài khoản của tôi</string>
+    <string name="navigation_Menu_News">Tin tức</string>
+    <string name="navigation_Menu_Help">Thông tin trợ giúp</string>
+    <string name="navigation_Menu_Introduction">Giới thiệu</string>
+    <string name="navigation_Menu_Exit">Thoát</string>
+
+    <string name="title_Dialog_Message">Thông báo</string>
+    <string name="title_Dialog_Confirm">Xác nhận</string>
+    <string name="title_Dialog_Process_Confirm">Đang xử lý…</string>
+
+    <string name="title_Dialog_Media_Camera">Take Photo</string>
+    <string name="title_Dialog_Media_Library">Choose from Library</string>
+    <string name="title_Dialog_Media_Cancel">Cancel</string>
+
+    <string name="title_Dialog_Emergency">THÔNG BÁO KHẨN</string>
+    <string name="content_Dialog_Emergency">Hàng nghìn Giftcode miễn phí đang chờ bạn.\n Đăng nhập tài khoản VTC ngay.</string>
+    <string name="content_Dialog_Emergency_Time">Chưa có tài khoản VTC? Đăng ký trong 5s</string>
+    <string name="btn_Dialog_Emergency_Login">ĐĂNG NHẬP</string>
+    <string name="btn_Dialog_Emergency_Register">ĐĂNG KÝ</string>
+
+    <string name="title_View_Game_List">DANH SÁCH GAME</string>
+    <string name="title_View_GIFTCODE">SỰ KIỆN</string>
+    <string name="title_View_SPINNING">VÒNG QUAY</string>
+    <string name="title_View_NEWS">TIN TỨC</string>
+    <string name="title_View_PROFILE">TÀI KHOẢN</string>
+    <string name="title_View_NOTIFICATION">THÔNG BÁO</string>
+
+    <string name="title_Icon_Game_List">Game</string>
+    <string name="title_Icon_Giftcode">Giftcode</string>
+    <string name="title_Icon_Spinning">Vòng quay</string>
+    <string name="title_Icon_News">Tin tức</string>
+    <string name="title_Icon_Profile">Tài khoản</string>
+
+    <string name="title_Profile_History">Lịch sử trúng thưởng</string>
+    <string name="title_Profile_Game_List">Danh sách game</string>
+    <string name="title_Profile_Support">Thông tin hỗ trợ</string>
+    <string name="title_Profile_Intro">Giới thiệu</string>
+    <string name="title_Profile_Exit">Thoát tài khoản</string>
+
+    <string name="content_Noti_Cancel">Hủy</string>
+    <string name="content_Noti_Minutes">phút trước</string>
+</resources>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/lout_Bar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_Blue_Light">
+
+        <ImageView
+            android:id="@+id/img_Back"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/size_Margin_Header_Icon"
+            android:src="@mipmap/ic_back" />
+
+        <TextView
+            android:id="@+id/tv_Titile_View"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerInParent="true"
+            android:text="@string/title_View_SHARE_GAME"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/tv_Detail"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/size_Margin_Space"
+            android:text="@string/content_Btn_Detail"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Content_Game_Info_Header">
+
+                <ImageView
+                    android:background="@color/color_PlaceHolder"
+                    android:src="@drawable/ic_placeholder"
+                    android:id="@+id/img_Game_Info_Banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Banner_h" />
+
+                <ImageView
+                    android:background="@drawable/ic_placeholder"
+                    android:id="@+id/img_Game_Info_Avatar"
+                    android:layout_width="@dimen/size_Image_Avatar_Game"
+                    android:layout_height="@dimen/size_Image_Avatar_Game"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/size_Margin_Space" />
+                <ImageView
+                    android:background="@drawable/cus_while_border_corner_lout"
+                    android:layout_width="@dimen/size_Image_Avatar_Game"
+                    android:layout_height="@dimen/size_Image_Avatar_Game"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="@dimen/size_Margin_Space" />
+                <TextView
+                    android:id="@id/tv_Game_Name"
+                    style="@style/CusTextViewTitileTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/img_Game_Info_Banner"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:layout_toRightOf="@+id/img_Game_Info_Avatar"
+                    android:text="Vua sân cỏ" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/lout_Fanpage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/content_Game_Info_Fanpage"
+                        android:textColor="@color/color_Blue_Facebook"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="@dimen/size_btn_main_h"
+                        android:layout_height="@dimen/size_btn_main_h"
+                        android:background="@drawable/ic_facebook" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/btn_download"
+                    android:layout_width="130dp"
+                    android:layout_height="@dimen/size_btn_main_h"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_button_red"
+                    android:drawableLeft="@mipmap/ic_download"
+                    android:paddingLeft="@dimen/size_Margin_Space"
+                    android:text="DOWNLOAD"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/btn_Play_Now"
+                    android:layout_width="@dimen/size_btn_main_w"
+                    android:layout_height="@dimen/size_btn_main_h"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_button_green"
+                    android:drawableLeft="@mipmap/ic_joystick"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/size_Margin_Space"
+                    android:text="@string/title_Btn_PlayNow"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@drawable/cus_shade_bottom_2" />
+
+            <TextView
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:gravity="center"
+                android:text="@string/content_Guide_GiftCode" />
+
+            <TextView
+                android:id="@+id/btn_Share_Facebook"
+                android:layout_width="200dp"
+                android:layout_height="@dimen/size_btn_main_h"
+                android:layout_gravity="center"
+                android:background="@drawable/cus_button_blue"
+                android:drawableLeft="@mipmap/ic_facebook_f"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/size_Margin_Space"
+                android:text="@string/title_Btn_ShareFB"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/btn_Download_Now"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_btn_main_h"
+                android:layout_gravity="center"
+                android:background="@drawable/cus_button_red"
+                android:drawableLeft="@mipmap/ic_download"
+                android:gravity="center"
+                android:padding="@dimen/size_Margin_Space"
+                android:text="@string/title_Btn_Download_Now"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phần thưởng: "
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_Event_Description"
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_1"
+                    android:text="Phần thưởng: Giftcode VIP (300 thể lực, 500 máu, 1000 Skill Point) " />
+            </RelativeLayout>
+
+            <WebView
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:id="@+id/webView_Ads"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_Margin_Space"
+                android:layout_marginBottom="@dimen/size_Icon_Reward_Item"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

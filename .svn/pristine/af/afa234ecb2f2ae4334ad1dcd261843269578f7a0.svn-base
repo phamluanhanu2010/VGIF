@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView_Wrap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_Gray"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_Blue_Light"
+                android:paddingBottom="30dp"
+                android:paddingTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_Avatar"
+                    android:layout_width="@dimen/size_Avatar"
+                    android:layout_height="@dimen/size_Avatar"
+                    android:layout_margin="@dimen/size_Margin_Space" />
+
+                <Button
+                    android:visibility="gone"
+                    android:id="@+id/btn_Topup"
+                    android:layout_width="@dimen/size_btn_inapp_w"
+                    android:layout_height="@dimen/size_btn_inapp_h"
+                    android:layout_below="@+id/img_Avatar"
+                    android:layout_marginBottom="@dimen/size_Margin_Space"
+                    android:layout_toRightOf="@+id/img_Avatar"
+                    android:background="@drawable/cus_button_orange"
+                    android:text="@string/btn_Topup"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:visibility="gone"
+                    android:layout_width="@dimen/size_btn_inapp_w"
+                    android:layout_height="@dimen/size_btn_inapp_h"
+                    android:layout_below="@+id/img_Avatar"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:layout_toRightOf="@+id/btn_Topup"
+                    android:background="@drawable/cus_button_green"
+                    android:text="@string/btn_Exchange"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_Username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/img_Avatar"
+                    android:layout_marginLeft="@dimen/size_Margin_Space"
+                    android:layout_marginRight="@dimen/size_Margin_Space"
+                    android:layout_marginTop="@dimen/size_Margin_Space"
+                    android:layout_toEndOf="@+id/img_Avatar"
+                    android:textColor="@color/color_White"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/tv_Vcoin"
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tv_Username"
+                    android:layout_below="@+id/tv_Username"
+                    android:layout_marginTop="@dimen/size_Margin_Space"
+                    android:textColor="@color/color_White"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lout_Profile_Information"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Profile_h"
+                android:background="@drawable/cus_ripple_effect"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_Ic_Profile"
+                    android:layout_width="@dimen/size_Icon_Menu"
+                    android:layout_height="@dimen/size_Icon_Menu"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@drawable/ic_profile_information"
+                    android:gravity="center_vertical" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@mipmap/ic_arrow_right"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    style="@style/CusTextViewTitileBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/img_Ic_Profile"
+                    android:gravity="center_vertical"
+                    android:text="@string/title_Profile_Information"
+                    android:textColor="@drawable/navigation_text_color"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_SmallLine_h"
+                android:background="@color/color_Gray" />
+
+            <RelativeLayout
+                android:id="@+id/lout_Profile_Security"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Profile_h"
+                android:background="@drawable/cus_ripple_effect"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_Ic_Security"
+                    android:layout_width="@dimen/size_Icon_Menu"
+                    android:layout_height="@dimen/size_Icon_Menu"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@drawable/ic_profile_security"
+                    android:gravity="center_vertical" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@mipmap/ic_arrow_right"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    style="@style/CusTextViewTitileBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/img_Ic_Security"
+                    android:gravity="center_vertical"
+                    android:text="@string/title_Profile_Security"
+                    android:textColor="@drawable/navigation_text_color" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_SmallLine_h"
+                android:background="@color/color_Gray" />
+
+            <RelativeLayout
+                android:id="@+id/lout_Profile_Support"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Profile_h"
+                android:background="@drawable/cus_ripple_effect"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_Ic_Support"
+                    android:layout_width="@dimen/size_Icon_Menu"
+                    android:layout_height="@dimen/size_Icon_Menu"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@drawable/ic_profile_support"
+                    android:gravity="center_vertical" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@mipmap/ic_arrow_right"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    style="@style/CusTextViewTitileBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/img_Ic_Support"
+                    android:gravity="center_vertical"
+                    android:text="@string/title_Profile_Support"
+                    android:textColor="@drawable/navigation_text_color" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_SmallLine_h"
+                android:background="@color/color_Gray" />
+
+            <RelativeLayout
+                android:id="@+id/lout_Profile_Logout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Profile_h"
+                android:background="@drawable/cus_ripple_effect"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/img_Ic_Logout"
+                    android:layout_width="@dimen/size_Icon_Menu"
+                    android:layout_height="@dimen/size_Icon_Menu"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@drawable/ic_profile_logout"
+                    android:gravity="center_vertical" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@mipmap/ic_arrow_right"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    style="@style/CusTextViewTitileBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/img_Ic_Logout"
+                    android:gravity="center_vertical"
+                    android:text="@string/title_Profile_Logout"
+                    android:textColor="@drawable/navigation_text_color" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

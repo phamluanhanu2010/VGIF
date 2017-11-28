@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/lout_Bar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_Blue_Light">
+
+        <ImageView
+            android:id="@+id/img_Back"
+            android:layout_width="@dimen/size_Icon_Next_News_w"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingBottom="@dimen/size_Margin_Header_Icon"
+            android:paddingTop="@dimen/size_Margin_Header_Icon"
+            android:src="@mipmap/ic_back" />
+
+        <ImageView
+            android:id="@+id/img_Close"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/size_Margin_Header_Icon"
+            android:src="@mipmap/ic_exit" />
+
+        <TextView
+            android:id="@+id/tv_Titile_View"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerInParent="true"
+            android:text="" />
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>

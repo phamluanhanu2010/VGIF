@@ -1,0 +1,139 @@
+package com.strategy.intecom.vtc.vgift.view;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.adapter.AdtGiftcode;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.connection.VtcConnection;
+import com.strategy.intecom.vtc.vgift.enums.TypeActionConnection;
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.interfaces.RequestListener;
+import com.strategy.intecom.vtc.vgift.model.GiftcodeItem;
+import com.strategy.intecom.vtc.vgift.utils.Const;
+import com.strategy.intecom.vtc.vgift.utils.ConstParam;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class FMGiftcode extends Fragment implements View.OnClickListener, RequestListener {
+    private View viewRoot;
+    private Callback callback;
+    private ListView listViewGiftcode;
+    private AdtGiftcode mAdapter;
+    private VtcConnection vtcConnection;
+
+    public FMGiftcode() {
+
+    }
+
+    @SuppressLint("ValidFragment")
+    public FMGiftcode(Callback callback) {
+        this.callback = callback;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        viewRoot = inflater.inflate(R.layout.ui_giftcode, container, false);
+        AppBase.showLog("onCreateView-----------FMGiftcode");
+        return viewRoot;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+//        initController(view);
+    }
+
+
+    public void callBackMain() {
+        AppBase.showLog("callBackMain--------------------------FMGiftcode");
+        vtcConnection = new VtcConnection(getContext(), this);
+        vtcConnection.onExcuteProcess(TypeActionConnection.TYPE_ACTION_GET_GAME_LIST_GIFTCODE, RequestListener.API_CONNECTION_GET_LIST_GIFTCODE, false);
+    }
+
+    private void initController(String data) {
+
+        listViewGiftcode = (ListView) viewRoot.findViewById(R.id.lst_Giftcode);
+        listViewGiftcode.setDivider(null);
+        initData(data);
+    }
+
+    private void initData(String data) {
+        try {
+            JSONArray jsonArrayGiftCode = new JSONArray(data);
+
+            final List<GiftcodeItem> lst = new ArrayList<>();
+
+
+            for (int i = 0; i < jsonArrayGiftCode.length(); i++) {
+                GiftcodeItem item = new GiftcodeItem();
+                item.setTitileGiftcode(AppBase.checkStringNull(jsonArrayGiftCode.getJSONObject(i).optString(ConstParam.TITILE_EVENT)));
+                item.setImgUrl(AppBase.checkStringNull(jsonArrayGiftCode.getJSONObject(i).optString(ConstParam.BANNER_EVENT)));
+                item.setGiftcodeID(AppBase.checkStringNull(jsonArrayGiftCode.getJSONObject(i).optString(ConstParam.ID)));
+
+
+                lst.add(item);
+            }
+            mAdapter = new AdtGiftcode(getContext(), R.layout.tmp_item_giftcode, lst);
+            mAdapter.setOnClickItem(new AdtGiftcode.onClickItem() {
+                @Override
+                public void onClickItem(int position, String eventID) {
+                    AppBase.showLog("----------Giftcode----Position: " + position + "-----------eventID: " + eventID);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(ConstParam.BUNDLE_KEY_EVENT_DETAIL, eventID);
+                    AppBase.callNewFragmentCallBack(Const.UI_SHARE_GIFTCODE, bundle, true, new Callback() {
+                        @Override
+                        public <T> void onHandlerCallBack(int key, T... t) {
+                            callback.onHandlerCallBack(0);
+                        }
+                    });
+                }
+            });
+            listViewGiftcode.setAdapter(mAdapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onPostExecuteError(TypeActionConnection keyType, String errorcode, String msg, String info, String reponseFullData) {
+
+    }
+
+    @Override
+    public void onPostExecuteSuccess(TypeActionConnection keyType, String response, String reponseFullData) {
+        switch (keyType) {
+            case TYPE_ACTION_GET_GAME_LIST_GIFTCODE:
+                if (!response.equals("")) {
+                    AppBase.showLog("TYPE_ACTION_GET_GAME_LIST_GIFTCODE: " + response);
+                    initController(response);
+                }
+                break;
+        }
+    }
+}

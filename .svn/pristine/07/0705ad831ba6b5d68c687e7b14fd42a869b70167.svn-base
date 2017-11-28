@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_header_bar" />
+
+    <LinearLayout
+        android:id="@+id/lout_Date_Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/lout_Date_From"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:layout_weight="4"
+            android:background="@android:color/holo_red_light">
+
+            <TextView
+                android:id="@+id/tv_Title_From_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/size_Margin_Space"
+                android:paddingBottom="@dimen/size_Margin_Space"
+                android:text="Từ ngày:" />
+
+            <TextView
+                android:id="@+id/tv_From_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_Title_From_Date"
+                android:paddingTop="@dimen/size_Margin_Space"
+                android:text="" />
+
+            <ImageView
+                android:id="@+id/img_From_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/quantum_ic_cast_connected_white_24" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lout_Date_To"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_Margin_Space"
+            android:layout_marginBottom="@dimen/size_Margin_Space"
+            android:layout_weight="4"
+            android:background="@android:color/holo_red_light">
+
+            <TextView
+                android:id="@+id/tv_Title_To_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/size_Margin_Space"
+                android:paddingBottom="@dimen/size_Margin_Space"
+                android:text="Từ ngày:" />
+            <TextView
+                android:id="@+id/tv_To_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tv_Title_To_Date"
+                android:paddingTop="@dimen/size_Margin_Space"
+                android:text="" />
+
+            <ImageView
+                android:id="@+id/img_To_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/quantum_ic_cast_connected_white_24" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
+            android:gravity="center"
+            android:text="Xem" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="@dimen/size_Margin_Space"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Ngày"
+            android:gravity="center"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Game"
+            android:gravity="center"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Code"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lst_History"
+        android:layout_margin="@dimen/size_Margin_Space"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+</LinearLayout>

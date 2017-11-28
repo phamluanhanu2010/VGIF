@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="@dimen/size_Margin_Space"
+    android:layout_marginLeft="@dimen/size_Margin_Space"
+    android:layout_marginRight="@dimen/size_Margin_Space"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/btn_capture"
+        style="@style/CusBase.style.size"
+        android:layout_width="match_parent"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:text="@string/title_Dialog_Media_Camera"
+        android:textSize="@dimen/size_Text_App_Title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5sp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/btn_library"
+        style="@style/CusBase.style.size"
+        android:layout_width="match_parent"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:text="@string/title_Dialog_Media_Library"
+        android:textSize="@dimen/size_Text_App_Title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0.5sp"
+        android:background="@android:color/darker_gray" />
+
+
+    <Button
+        android:id="@+id/btn_cancel"
+        style="@style/CusBase.style.size"
+        android:layout_width="match_parent"
+        android:background="@android:color/transparent"
+        android:text="@string/title_Dialog_Media_Cancel" />
+</LinearLayout>

@@ -1,0 +1,39 @@
+package com.strategy.intecom.vtc.vgift.enums;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by Thuy Chi on 7/7/16.
+ */
+public enum TypeActionConnection {
+
+    TYPE_ACTION(0),
+
+    TYPE_ACTION_LOGIN(1);
+
+    private static final Map<Integer, TypeActionConnection> typesByValue = new HashMap<>();
+
+    private final int valuesConnectionType;
+
+    TypeActionConnection(int value) {
+        this.valuesConnectionType = value;
+    }
+
+    public int getValuesTypeDialog() {
+        return valuesConnectionType;
+    }
+
+    static {
+        for (TypeActionConnection type : TypeActionConnection.values()) {
+            typesByValue.put(type.valuesConnectionType, type);
+        }
+    }
+
+    public static TypeActionConnection forValue(int value) {
+        TypeActionConnection type = typesByValue.get(value);
+        if (type == null)
+            return TypeActionConnection.TYPE_ACTION;
+        return typesByValue.get(value);
+    }
+}

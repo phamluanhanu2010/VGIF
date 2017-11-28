@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/lout_Bar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_Blue_Light">
+
+        <ImageView
+            android:id="@+id/img_Back"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/size_Margin_Space"
+            android:src="@mipmap/ic_back" />
+
+        <TextView
+            android:id="@+id/tv_Titile_View"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerInParent="true"
+            android:text="@string/title_View_EDIT_PROFILE_CHANGE_PASS" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_account"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Input_Text_h"
+            android:layout_marginBottom="@dimen/size_Margin_Space"
+            android:layout_marginTop="@dimen/size_Profile_Margin"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/size_Margin_Space">
+
+            <EditText
+                android:id="@+id/tv_Name"
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:hint="@string/hint_Current_Password" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Input_Text_h"
+            android:background="@drawable/cus_border_one_side_bottom"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/size_Margin_Space">
+
+            <EditText
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:hint="@string/hint_New_Password" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/lout_Change_Password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Input_Text_h"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/size_Margin_Space">
+
+            <EditText
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:layout_toRightOf="@+id/img_pass"
+                android:background="@android:color/transparent"
+                android:lines="1"
+                android:hint="@string/hint_New_Password_2" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_Login"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_btn_main_h"
+            android:layout_margin="@dimen/size_Profile_Margin"
+            android:background="@drawable/cus_button_blue_bar"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/title_Profile_Save" />
+    </LinearLayout>
+</LinearLayout>

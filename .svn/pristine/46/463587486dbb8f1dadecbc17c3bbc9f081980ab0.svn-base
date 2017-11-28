@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lout_Main_Container">
+    <include
+        android:id="@+id/lout_App_Header_Bar"
+        layout="@layout/app_header_bar"/>
+    <com.strategy.intecom.vtc.vgift.custom.ViewPageCus
+        android:layout_below="@+id/lout_App_Header_Bar"
+        android:layout_above="@+id/lout_App_Bottom_Bar"
+        android:id="@+id/viewpage_Content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.strategy.intecom.vtc.vgift.custom.ViewPageCus>
+    <include
+        android:id="@+id/lout_App_Bottom_Bar"
+        android:layout_alignParentBottom="true"
+        layout="@layout/app_footer_bar"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_width="match_parent" />
+</RelativeLayout>

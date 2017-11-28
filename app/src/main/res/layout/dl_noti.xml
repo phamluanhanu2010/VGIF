@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cus_border_corner_lout"
+        android:gravity="center"
+        android:layout_margin="@dimen/size_Margin_Space"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_margin="@dimen/size_Margin_Space_Dialog"
+            android:id="@+id/tv_Titile"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:text="@string/title_Dialog_Emergency"
+            android:textColor="@android:color/holo_red_light" />
+
+        <TextView
+            android:layout_margin="@dimen/size_Margin_Space_Dialog"
+            android:id="@+id/tv_Logout_Content"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Titile"
+            android:gravity="center"
+            android:text="@string/content_Dialog_Force_Logout" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/img_Close_Popup"
+        android:layout_width="@dimen/size_Icon_Footer_h"
+        android:layout_height="@dimen/size_Icon_Footer_h"
+        android:layout_alignRight="@+id/linearLayout"
+        android:layout_alignTop="@+id/linearLayout"
+        android:layout_margin="3dp"
+        android:background="@drawable/ic_delete_black" />
+
+</RelativeLayout>

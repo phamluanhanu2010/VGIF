@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/size_Margin_Space"
+    android:paddingTop="@dimen/size_Margin_Space">
+
+    <TextView
+        android:id="@+id/tv_History_Date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/tv_History_Game"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/tv_History_User"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/tv_History_Reward"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1" />
+</LinearLayout>

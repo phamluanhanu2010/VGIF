@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/size_Image_Avatar_Game_Half"
+        android:layout_marginLeft="@dimen/size_Margin_Space"
+        android:layout_marginRight="@dimen/size_Margin_Space"
+        android:layout_marginTop="@dimen/size_Image_Avatar_Game_Half"
+        android:background="@drawable/cus_border_corner_lout"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/size_Margin_Space"
+        android:paddingLeft="@dimen/size_Margin_Space"
+        android:paddingRight="@dimen/size_Margin_Space"
+        android:paddingTop="@dimen/size_Image_Avatar_Game_Half">
+
+        <TextView
+            android:id="@+id/tv_Game_Name"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:gravity="center"
+            android:lines="1"
+            android:text="VUA SÂN CỎ"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/tv_Titile"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:layout_marginTop="@dimen/size_Margin_Space"
+            android:gravity="center"
+            android:lines="1"
+            android:text="GIFTCODE"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/tv_Reward_Type"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:gravity="center"
+            android:text="LOẠI 1"
+            android:textAllCaps="true" />
+
+        <TextView
+            android:id="@+id/tv_Reward_Pin_Code"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:gravity="center"
+            android:lines="1"
+            android:textAllCaps="true"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_Reward_Description"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:layout_marginTop="@dimen/size_Margin_Space"
+            android:gravity="center"
+            android:text="GiftcGiftcode trị giá 3000 Vàng, 40 bộ đồ trong game Vua Sân Cỏ. Tổng trị giá hơn 300.000 đồng." />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_Avatar_Game"
+        android:layout_width="@dimen/size_Image_Avatar_Game"
+        android:layout_height="@dimen/size_Image_Avatar_Game"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/cus_border_image"
+        android:padding="1dp" />
+
+    <ImageView
+        android:id="@+id/img_Close_Popup"
+        android:layout_width="@dimen/size_Icon_Footer_h"
+        android:layout_height="@dimen/size_Icon_Footer_h"
+        android:layout_alignRight="@+id/linearLayout"
+        android:layout_alignTop="@+id/linearLayout"
+        android:layout_margin="3dp"
+        android:background="@drawable/ic_delete_black" />
+
+</RelativeLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_News_Titile"
+        style="@style/CusTextViewContentTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_Margin_Space"
+        android:text="kdsfkjhdskjfhsdkjfhkjsd"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/img_News"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_Banner_h"
+        android:background="@drawable/banner" />
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_Margin_Space"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/size_Icon_In_App"
+            android:layout_height="@dimen/size_Icon_In_App"
+            android:background="@drawable/ic_like" />
+
+        <TextView
+            android:id="@+id/tv_Views_Count"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="@dimen/size_Margin_Space"
+            android:textColor="@android:color/darker_gray" />
+
+        <ImageView
+            android:layout_marginLeft="@dimen/size_Margin_Space"
+            android:layout_width="@dimen/size_Icon_In_App"
+            android:layout_height="@dimen/size_Icon_In_App"
+            android:background="@drawable/ic_calendar" />
+
+        <TextView
+            android:id="@+id/tv_Date"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_Margin_Space"
+        android:background="@color/color_Gray"
+        />
+
+</LinearLayout>

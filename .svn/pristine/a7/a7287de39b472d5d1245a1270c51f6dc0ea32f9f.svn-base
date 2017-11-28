@@ -1,0 +1,50 @@
+package com.strategy.intecom.vtc.vgift.utils;
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class Const {
+    public static int UI_CURRENT_CONTEXT = 0;
+    public static final int UI_GAMELIST = 1;
+    public static final int UI_HISTORY = 2;
+    public static final int UI_NOTI = 3;
+    public static final int UI_GIFTCODE = 4;
+    public static final int UI_PROFILE = 5;
+    public static final int UI_NEWS = 6;
+    public static final int UI_GAME_INFO = 7;
+    public static final int UI_NEWS_DETAIL = 8;
+    public static final int UI_SHARE_GIFTCODE = 9;
+    public static final int UI_EDIT_PROFILE = 10;
+    public static final int UI_EDIT_PROFILE_CHANGE_PASSWORD = 11;
+    public static final int UI_SEARCH = 12;
+    public static final int UI_GUIDE = 13;
+
+    public static int RECYCLERVIEW_SMOOTH = 300;
+
+    public static final int INDEX_ACTION_GAME_LIST = 0;
+    public static final int INDEX_ACTION_GIFT_CODE = 1;
+    public static final int INDEX_ACTION_SPINNING = 2;
+    public static final int INDEX_ACTION_NEWS = 3;
+    public static final int INDEX_ACTION_PROFILE = 4;
+
+    public static final int COUNT_VIEW = 5;
+
+    public static final int IMAGE_CORNER_RADIUS = 30;
+
+    public static final int REQUEST_CODE_LOGIN = 101;
+    public static final int REQUEST_CODE_RESGISTER = 102;
+    public static final int REQUEST_CODE_SHARE_FB = 103;
+
+
+    public static final int TYPE_MISSION_SHARE_FB = 1;
+    public static final int TYPE_MISSION_DOWNLOAD = 0;
+
+    public static final int OS_TYPE = 2;
+
+    public static final int MAX_TIME_SPINNING = 43200000;
+
+    public static final int GAME_STATUS_NEW = 0;
+    public static final int GAME_STATUS_NORMAL = 1;
+    public static final int GAME_STATUS_HOT = 2;
+
+}

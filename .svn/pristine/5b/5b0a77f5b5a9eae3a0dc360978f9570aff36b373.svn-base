@@ -1,0 +1,88 @@
+package com.strategy.intecom.vtc.vgift.view;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.adapter.AdtGiftcode;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.model.GiftcodeItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class FMGiftcode extends Fragment implements View.OnClickListener {
+    private View viewRoot;
+    private Callback callback;
+    private ListView listViewGiftcode;
+    private AdtGiftcode mAdapter;
+
+    public FMGiftcode() {
+
+    }
+
+    @SuppressLint("ValidFragment")
+    public FMGiftcode(Callback callback) {
+        this.callback = callback;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        viewRoot = inflater.inflate(R.layout.ui_giftcode, container, false);
+        return viewRoot;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        initController(view);
+    }
+
+    private void initController(View view) {
+
+        listViewGiftcode = (ListView) view.findViewById(R.id.lst_Giftcode);
+        initData();
+    }
+
+    private void initData() {
+        final List<GiftcodeItem> lst = new ArrayList<>();
+
+
+        for (int i = 0; i < 30; i++) {
+            GiftcodeItem item = new GiftcodeItem();
+            item.setTitileGiftcode(String.valueOf(i));
+
+            lst.add(item);
+        }
+        mAdapter = new AdtGiftcode(getContext(), R.layout.tmp_item_giftcode, lst);
+        mAdapter.setOnClickItem(new AdtGiftcode.onClickItem() {
+            @Override
+            public void onClickItem(int type, int position) {
+                AppBase.showLog("----------Type: " + type + "-----------Position: " + position);
+
+            }
+        });
+        listViewGiftcode.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            default:
+                break;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+package vtc.game.app.vcoin.vtcpay.custom;
+
+import android.content.Context;
+import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+
+/**
+ * Created by ThuyChi on 10/5/2016.
+ */
+public class ViewPageCus extends ViewPager {
+    private boolean enabled;
+
+    public ViewPageCus(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.enabled = true;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (this.enabled) {
+            return super.onTouchEvent(event);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        if (this.enabled) {
+            return super.onInterceptTouchEvent(event);
+        }
+
+        return false;
+    }
+
+    /**
+     * Custom implementation to enable or not swipe :)
+     *
+     * @param enabled
+     *            true to enable swipe, false otherwise.
+     */
+    public void setPagingEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+}

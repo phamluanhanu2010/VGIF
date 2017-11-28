@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <!--<RelativeLayout
+        android:id="@+id/lout_Container_Baner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_Image_Baner"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager_Baner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator_Baner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dip"
+            app:fillColor="@color/color_Green" />
+
+    </RelativeLayout>-->
+
+    <ListView
+        android:id="@+id/lstView_GameType"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

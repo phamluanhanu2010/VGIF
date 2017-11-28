@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lout_Profile_Content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_account"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/lout_Profile_Info"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Profile_Info_h"
+            android:background="@android:color/white">
+
+            <ImageView
+                android:id="@+id/img_Avatar"
+                android:layout_width="@dimen/size_Avatar"
+                android:layout_height="@dimen/size_Avatar"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/size_Profile_Margin"
+                android:background="@drawable/avatar" />
+
+            <TextView
+                android:id="@+id/tv_Username"
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:layout_toRightOf="@+id/img_Avatar"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_Email"
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_Username"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:layout_toRightOf="@+id/img_Avatar" />
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/cus_shade_bottom_2"/>
+
+        <LinearLayout
+            android:id="@+id/lout_Profile_History"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Profile_h"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/size_Profile_Margin">
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:background="@drawable/icon_history_profile_color"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@drawable/navigation_text_color"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:text="@string/title_Profile_History" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/lout_Profile_Game_List"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Profile_h"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/size_Profile_Margin">
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:background="@drawable/icon_history_profile_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:text="@string/title_Profile_Game_List"
+                android:textColor="@drawable/navigation_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lout_Profile_Support"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Profile_h"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/size_Profile_Margin">
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:background="@drawable/icon_support_profile_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:text="@string/title_Profile_Support"
+                android:textColor="@drawable/navigation_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lout_Profile_Intro"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Profile_h"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/size_Profile_Margin">
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:background="@drawable/icon_intro_profile_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:text="@string/title_Profile_Intro"
+                android:textColor="@drawable/navigation_text_color" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lout_Profile_Exit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Profile_h"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/size_Profile_Margin"
+            android:paddingLeft="@dimen/size_Profile_Margin">
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:background="@drawable/icon_logout_profile_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:text="@string/title_Profile_Exit"
+                android:textColor="@drawable/navigation_text_color" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

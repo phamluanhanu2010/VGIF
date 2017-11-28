@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/lout_Game_content"
+        android:layout_width="@dimen/size_Image_Avatar_Game"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_Game"
+            android:layout_width="@dimen/size_Image_Avatar_Game"
+            android:layout_height="@dimen/size_Image_Avatar_Game"
+            android:background="@drawable/ic_placeholder" />
+
+        <ImageView
+            android:id="@+id/img_Corner_Hot"
+            android:layout_width="@dimen/size_Image_Avatar_Game"
+            android:layout_height="@dimen/size_Image_Avatar_Game"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_corner_red_2"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/img_Corner_New"
+            android:layout_width="@dimen/size_Image_Avatar_Game"
+            android:layout_height="@dimen/size_Image_Avatar_Game"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_corner_green_2"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_Game_Name"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Game"
+            android:gravity="center"
+            android:lines="2"
+            android:text="Game 1" />
+    </RelativeLayout>
+
+</LinearLayout>

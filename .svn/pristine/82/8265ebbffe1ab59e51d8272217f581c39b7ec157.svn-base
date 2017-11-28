@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_Margin_Space_Dialog"
+        android:background="@drawable/cus_border_lout"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_Exit"
+            android:layout_width="@dimen/size_Icon_Footer_h"
+            android:layout_height="@dimen/size_Icon_Footer_h"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:src="@drawable/ic_delete"
+            android:tint="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_Titile"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:gravity="center"
+            android:text="@string/title_Profile_CHANGE_PASSWORD"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Titile"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:hint="@string/hint_Current_Password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Input_Text_h"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:layout_marginRight="@dimen/size_Margin_Space" />
+
+            <EditText
+                android:hint="@string/hint_New_Password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Input_Text_h"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:layout_marginRight="@dimen/size_Margin_Space"/>
+
+            <EditText
+                android:hint="@string/hint_New_Password_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_Input_Text_h"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:layout_marginRight="@dimen/size_Margin_Space" />
+
+            <Button
+                android:id="@+id/btn_Login"
+                style="@style/CusTextViewTitileViewTheme"
+                android:layout_width="@dimen/size_btn_main_w"
+                android:layout_height="@dimen/size_btn_main_h"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:background="@drawable/cus_button_orange"
+                android:gravity="center"
+                android:text="@string/title_Profile_Save" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

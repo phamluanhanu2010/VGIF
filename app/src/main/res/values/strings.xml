@@ -1,0 +1,191 @@
+<resources>
+
+    <string name="gcm_Sender_Id">1088997532662</string>
+
+    <string name="app_name">VTC GAME</string>
+
+    <string name="title_Dialog_Message">Thông báo</string>
+    <string name="title_Dialog_Process_Confirm">Đang xử lý…</string>
+
+    <string name="title_Dialog_Media_Camera">Take Photo</string>
+    <string name="title_Dialog_Media_Library">Choose from Library</string>
+    <string name="title_Dialog_Media_Cancel">Cancel</string>
+
+    <string name="title_Dialog_Emergency">THÔNG BÁO KHẨN</string>
+    <string name="content_Dialog_Emergency">Hàng nghìn Giftcode miễn phí đang chờ bạn.\n Đăng nhập tài khoản VTC ngay.</string>
+    <string name="content_Dialog_Emergency_Time">Chưa có tài khoản VTC? Đăng ký trong 5s</string>
+    <string name="btn_Dialog_Emergency_Login">ĐĂNG NHẬP</string>
+    <string name="btn_Dialog_Emergency_Register">ĐĂNG KÝ</string>
+    <string name="btn_Dialog_Force_Logout_Ok">OK</string>
+    <string name="btn_Dialog_Home">Trang chủ</string>
+
+    <string name="content_Dialog_Force_Logout">Thiết bị khác đã đăng nhập tài khoản của bạn</string>
+
+    <string name="title_View_Game_List">DANH SÁCH GAME</string>
+    <string name="title_View_GIFTCODE">SỰ KIỆN</string>
+    <string name="title_View_SPINNING">VÒNG QUAY</string>
+    <string name="title_View_NEWS">TIN TỨC</string>
+    <string name="title_View_PROFILE">TÀI KHOẢN</string>
+    <string name="title_View_NOTIFICATION">THÔNG BÁO</string>
+    <string name="title_View_SEARCH">TÌM KIẾM</string>
+    <string name="title_View_GAME_INFO">THÔNG TIN GAME</string>
+    <string name="title_View_DOWNLOAD_GAME">DOWNLOAD GAME</string>
+    <string name="title_View_SHARE_GAME">CHIA SẺ GAME</string>
+    <string name="title_View_EDIT_PROFILE">CHỈNH SỬA THÔNG TIN</string>
+    <string name="title_View_EDIT_PROFILE_CHANGE_PASS">ĐỔI MẬT KHẨU</string>
+    <string name="title_View_HISTORY">LỊCH SỬ</string>
+    <string name="title_View_GUIDE">HƯỚNG DẪN</string>
+    <string name="title_View_SUPPORT">HỖ TRỢ</string>
+    <string name="title_View_ADS">QUẢNG CÁO</string>
+
+    <string name="title_View_Profile_Account">Thông tin tài khoản</string>
+    <string name="title_View_Account_Phone_Verify">Xác thực số điện thoại</string>
+    <string name="title_View_Account_Phone_Remove">Xóa số điện thoại</string>
+    <string name="title_View_Account_Phone_Edit">Thay đổi số điện thoại</string>
+    <string name="title_View_Account_Email_Edit">Thay đổi Email</string>
+    <string name="title_View_Account_Security">Bảo mật tài khoản</string>
+
+    <string name="title_Spinning_Login">VUI LÒNG ĐĂNG NHẬP</string>
+    <string name="title_Spinning_Quay">QUAY</string>
+
+    <string name="title_Btn_PlayNow">CHƠI NGAY</string>
+    <string name="title_Btn_ShareFB">Chia sẻ qua Facebook</string>
+    <string name="title_Btn_Download_Now">Tải Game ngay</string>
+    <string name="content_Guide_GiftCode">Bạn hãy thực hiện những nhiệm vụ sau để nhận ngay phần thưởng hấp dẫn</string>
+
+    <string name="title_Icon_Game_List">Game</string>
+    <string name="title_Icon_Giftcode">Giftcode</string>
+    <string name="title_Icon_Spinning">Vòng quay</string>
+    <string name="title_Icon_News">Tin tức</string>
+    <string name="title_Icon_Profile">Cá nhân</string>
+    <string name="title_Icon_Home">Trang chủ</string>
+
+    <string name="title_Profile_Information">Thông tin tài khoản</string>
+    <string name="title_Profile_Owner_Information">Thông tin chủ tài khoản</string>
+    <string name="title_Profile_Security">Bảo mật tài khoản</string>
+    <string name="title_Profile_Support">Trợ giúp</string>
+    <string name="title_Profile_Logout">Đăng xuất</string>
+
+    <string name="title_Secu_SMS_Plus">SMS Plus</string>
+    <string name="title_Secu_Login">Bảo mật đăng nhập</string>
+    <string name="title_Secu_Password_Change">Đổi mật khẩu</string>
+    <string name="title_Secu_Freeze">Đóng băng vcoin</string>
+    <string name="title_Secu_Secret_Question">Câu hỏi bảo mật</string>
+
+    <string name="title_Profile_Password">Thay đổi mật khẩu</string>
+    <string name="title_Profile_Edit_Avatar">Thay đổi ảnh đại diện</string>
+    <string name="title_Profile_Save">LƯU THAY ĐỔI</string>
+    <string name="hint_Current_Password">Nhập mật khẩu hiện tại</string>
+    <string name="hint_Old_Password">Mật khẩu cũ</string>
+    <string name="hint_New_Password_2">Nhập lại mật khẩu mới</string>
+    <string name="hint_New_Password">Nhập mật khẩu mới</string>
+    <string name="hint_Vcoin_Count">Số Vcoin</string>
+    <string name="hint_Input_Phone_No">Điền số điện thoại</string>
+
+    <string name="hint_Profile_Account_Name">Họ và tên</string>
+    <string name="hint_Profile_Email">Email</string>
+    <string name="hint_Profile_Phone_No">Số điện thoại</string>
+    <string name="hint_Profile_Address">Địa chỉ</string>
+    <string name="hint_Profile_Passport">Số CMND</string>
+
+    <string name="hint_Account_New_Phone_No">Số điện thoại mới</string>
+    <string name="hint_Account_Phone_No">Số điện thoại</string>
+    <string name="hint_Account_Otp_Code">Mã OTP số điện thoại hiện tại</string>
+    <string name="hint_Account_New_Otp_Code">Mã OTP số điện thoại mới</string>
+    <string name="hint_Account_Otp_Code2">Mã OTP</string>
+    <string name="hint_Account_Current_Email">Email hiện tại</string>
+    <string name="hint_Account_New_Email">Email mới</string>
+    <string name="hint_Account_CMND">Số CMND</string>
+    <string name="hint_Account_Register_Email">Email đã đăng ký</string>
+    <string name="hint_Secret_Question">Nhập câu trả lời bảo mật</string>
+
+    <string name="spinner_Label_City">Tỉnh thành</string>
+    <string name="spinner_Label_District">Quận,Huyện</string>
+    <string name="spinner_Label_Commune">Phường,Xã</string>
+    <string name="spinner_Label_Secret_Question">Câu hỏi bảo mật</string>
+
+    <string name="content_Btn_Detail">Chi tiết</string>
+
+    <string name="content_Noti_Cancel">Hủy</string>
+    <string name="content_Noti_Minutes">phút trước</string>
+
+    <string name="content_Game_Info_Fanpage">FANPAGE</string>
+    <string name="content_Game_Info_Type">Thể loại: </string>
+    <string name="content_Game_Info_Date">Ngày phát hành: </string>
+    <string name="content_Game_Info_System">Nền tảng: </string>
+    <string name="content_Game_Info_Capacity">Dung lượng: </string>
+    <string name="content_Game_Info_Description">Mô tả: </string>
+
+    <string name="hint_Search_Game">Nhập tên game bạn cần tìm</string>
+    <string name="hint_Search_Event">Nhập tên event bạn cần tìm</string>
+
+    <string name="spinning_Time_Remain">Thời gian tới lượt tiếp theo</string>
+    <string name="spinning_Reward_String">bạn đã trúng phần thưởng</string>
+
+    <string name="btn_Exchange">Chuyển Vcoin</string>
+    <string name="btn_Topup">Nạp Vcoin</string>
+
+    <string name="title_Surplus">Tổng số dư Vcoin</string>
+    <string name="title_Available">Vcoin khả dụng</string>
+    <string name="title_Account_No">Số tài khoản:</string>
+    <string name="title_Register_Date">Ngày đăng ký:</string>
+    <string name="title_Email">Email:</string>
+    <string name="title_Phone_No">Số điện thoại:</string>
+    <string name="title_Date_Of_Birth">Ngày sinh</string>
+    <string name="title_Secret_Question">Câu trả lời bảo mật</string>
+
+    <string name="title_Btn_Change">Đổi</string>
+    <string name="title_Btn_Remove">Xóa</string>
+    <string name="title_Btn_Update">Cập nhật</string>
+    <string name="title_Btn_Verify">Xác thực</string>
+    <string name="title_Btn_Cancel_Register">Hủy đăng ký</string>
+    <string name="title_Btn_Change_Password">Đổi mật khẩu</string>
+    <string name="title_Btn_Action">Thực hiện</string>
+    <string name="title_Btn_Continuous">Tiếp tục</string>
+
+    <string name="label_Account">Tài khoản:</string>
+    <string name="label_Phone_No">Số điện thoại:</string>
+    <string name="label_Access_Information">Dịch vụ truy vấn thông tin</string>
+    <string name="label_Recieve_Sms">Nhận tin nhắn quảng cáo (miễn phí)</string>
+    <string name="label_Active_Sms">Tin nhắn chủ động (1Vcoin/2SMS)</string>
+    <string name="label_Increase_Sms">Nhận tin nhắn khi có số Vcoin tăng</string>
+    <string name="label_Decrease_Sms">Nhận tin nhắn khi có số Vcoin giảm</string>
+    <string name="label_OTP_Security">Bảo mật OTP</string>
+    <string name="label_OTP_Security_Guide">Mật khẩu sử dụng 1 lần khi: Thay đổi số điện thoại SMS Plus, Lấy lại mật khẩu, Mở đóng băng Vcoin, Bảo mật đăng nhập, Đổi câu hỏi bảo mật sử dụng số điện thoại SMS Plus</string>
+    <string name="label_ODP_Security">Bảo mật ODP (1Vcoin/2SMS)</string>
+    <string name="label_ODP_Security_Guide">Mật khẩu sử dụng trong 24h: chuyển khoản, thanh toán</string>
+    <string name="label_ODP_Security_Fee">Phí: 1Vcoin/2SMS</string>
+    <string name="label_Phone_Active_Msg">Để sử dụng tiện ích này, tài khoản của bạn phải cài đặt số điện thoại bảo mật.</string>
+    <string name="label_Update_Profile_Msg">Để sử dụng tiện ích này, tài khoản của bạn phải cập nhật thông tin tài khoản.</string>
+    <string name="label_Access_Informaiton_Service_Guide">Tính năng này chỉ dành cho những tài khoản VTC sử dụng dịch vụ SMS Plus. Để bảo vệ tài khoản an toàn hơn, khi đăng nhập vào hệ thống tài khoản VTC, bạn phải nhập mã OTP xác nhận</string>
+    <string name="label_Cancel_Account_Seurity">Hủy bảo mật đăng nhập</string>
+    <string name="label_Account_Name">Tên tài khoản</string>
+    <string name="label_Available_Vcoin">Số dư khả dụng</string>
+    <string name="label_Freeze_Vcoin">Số dư đã đóng băng</string>
+    <string name="label_Login_Security">Bảo mật đăng nhập OTP</string>
+
+    <string name="error_UserName_Null">Vui lòng nhập họ và tên</string>
+    <string name="error_Birthday_Null">Vui lòng chọn ngày sinh</string>
+    <string name="error_Email_Null">Vui lòng nhập Email</string>
+    <string name="error_Phone_Null">Vui lòng nhập số điện thoại</string>
+    <string name="error_City_Null">Vui lòng chọn Tình thành</string>
+    <string name="error_District_Null">Vui lòng chọn Quận, Huyện</string>
+    <string name="error_Ward_Null">Vui lòng chọn Phường, Xã</string>
+    <string name="error_Address_Null">Vui lòng nhập địa chỉ</string>
+    <string name="error_Secret_Question_Null">Vui lòng chọn câu trả lời bảo mật</string>
+    <string name="error_Answer_Null">Vui lòng nhập câu trả lời bảo mật</string>
+    <string name="error_Current_Email_Null">Vui lòng nhập Email hiện tại</string>
+    <string name="error_New_Email_Null">Vui lòng nhập Email mới</string>
+    <string name="error_Current_Phone_Null">Vui lòng nhập số điện thoại hiện tại</string>
+    <string name="error_New_Phone_Null">Vui lòng nhập số điện thoại mới</string>
+    <string name="error_Current_Otp_Null">Vui lòng nhập mã OTP</string>
+    <string name="error_Current_Otp_Null2">Vui lòng nhập mã OTP số điện thoại hiện tại</string>
+    <string name="error_New_Otp_Null">Vui lòng nhập mã OTP số điện thoại mới</string>
+    <string name="error_Old_Password_Null">Vui lòng nhập mật khẩu cũ</string>
+    <string name="error_New_Password_Null">Vui lòng nhập mật khẩu mới</string>
+    <string name="error_Re_New_Password_Null">Vui lòng nhập lại mật khẩu mới</string>
+    <string name="error_Freeze_Null">Vui lòng nhập số Vcoin muốn đóng băng</string>
+    <string name="error_Unfreeze_Null">Vui lòng nhập số Vcoin muốn mở đóng băng</string>
+    <string name="error_Passport_Null">Vui lòng nhập CMTND/Hộ chiếu</string>
+
+</resources>

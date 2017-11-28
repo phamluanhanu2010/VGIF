@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/lout_Bar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_Blue_Light">
+
+        <ImageView
+            android:id="@+id/img_Back"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/size_Margin_Header_Icon"
+            android:src="@mipmap/ic_back" />
+
+        <TextView
+            android:id="@+id/tv_Titile_View"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerInParent="true"
+            android:text="@string/title_View_SEARCH" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/lout_Search_Bar"
+        android:layout_below="@+id/lout_Bar_Container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/cus_gray_border_corner_lout"
+            android:layout_margin="@dimen/size_Margin_Space" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhập tên game bạn cần tìm"
+            android:layout_centerInParent="true"
+            android:id="@+id/tv_Guide" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:text="dfhdfhfdh"
+        android:id="@+id/tv_Result_Count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lout_Search_Bar"
+        android:layout_margin="@dimen/size_Margin_Space"
+        style="@style/CusTextViewContentTheme"
+        android:textColor="@android:color/holo_red_light"/>
+
+    <ListView
+        android:id="@+id/lst_Find"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_Result_Count" />
+</RelativeLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_Menu_Home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/navigation_Menu_Home" />
+        <item
+            android:id="@+id/nav_Menu_Game_List"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/navigation_Menu_Game_List" />
+        <item
+            android:id="@+id/nav_Menu_Wheel"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/navigation_Menu_Wheel" />
+        <item
+            android:id="@+id/nav_Menu_Profile"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/navigation_Menu_Profile" />
+        <item
+            android:id="@+id/nav_Menu_News"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/navigation_Menu_News" />
+        <item
+            android:id="@+id/nav_Menu_Help"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/navigation_Menu_Help" />
+        <item
+            android:id="@+id/nav_Menu_Introduction"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/navigation_Menu_Introduction" />
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_Menu_Exit"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/navigation_Menu_Exit" />
+        </menu>
+    </item>
+</menu>

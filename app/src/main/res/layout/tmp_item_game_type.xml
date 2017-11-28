@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/size_Margin_Space"
+    android:layout_marginTop="@dimen/size_Margin_Space"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_Margin_Space">
+
+        <TextView
+            android:id="@+id/tv_Game_Type_Title"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Game Type Item"
+            android:textSize="@dimen/size_Text_App_Title_View" />
+
+        <ImageView
+            android:id="@+id/img_Right_Arrow"
+            android:layout_width="@dimen/size_Icon_Footer_h"
+            android:layout_height="@dimen/size_Icon_Footer_h"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_right_arrow" />
+
+        <ImageView
+            android:id="@+id/img_Left_Arrow"
+            android:layout_width="@dimen/size_Icon_Footer_h"
+            android:layout_height="@dimen/size_Icon_Footer_h"
+            android:layout_marginRight="@dimen/size_Margin_Space"
+            android:layout_toLeftOf="@+id/img_Right_Arrow"
+            android:src="@drawable/ic_left_arrow" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rclView_Item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

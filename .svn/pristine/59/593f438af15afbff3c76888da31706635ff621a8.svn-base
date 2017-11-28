@@ -1,0 +1,25 @@
+package com.strategy.intecom.vtc.vgift.common;
+
+/**
+ * Created by ThuyChi on 9/19/2016.
+ */
+public class VtcString {
+
+    public static String DEVICE_TOKEN = "";
+    public static String ACCESS_TOKEN;
+    public static String USER_NAME;
+    public static String ACCOUNT_ID;
+
+    public static String KEY_NOTIFICATION = "notification";
+
+    public static final String CONFIRM_SERVER_NOT_FOUND = "Không thể kết nối tới Server";
+    public static final String CONFIRM_NO_INTERNET_CONNECTION = "Không có kết nối! Xin vui lòng kiểm tra lại kết nối Wifi/3G";
+    public static final String CONFIRM_SERVER_TIMEOUT = "Không có phản hồi từ Server";
+    public static final String CONFIRM_SERVER_ERROR_CONNECTION = "Lỗi kết nối";
+
+    public static final String SPINNING_ERROR_CHOOSE_GAME = "Vui lòng chọn game";
+
+    public static final String SPINNING_HISTORY_ACCOUNT = "Account";
+    public static final String SPINNING_HISTORY_ALL = "All";
+
+}

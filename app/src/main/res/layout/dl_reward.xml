@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lout_Wrap"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_reward"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="260dp"
+        android:layout_margin="@dimen/size_Margin_Space_Dialog"
+        android:background="@drawable/bg_dl_reward"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/size_Margin_Space">
+
+        <TextView
+            android:id="@+id/tv_Titile"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_Margin_Space"
+            android:gravity="center"
+            android:text="CHÚC MỪNG"
+            android:textAllCaps="true"
+            android:textColor="@color/color_Red_Light" />
+
+        <TextView
+            android:id="@+id/tv_Des"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="BẠN ĐÃ TRÚNG PHẦN THƯỞNG"
+            android:textAllCaps="true"
+            android:textColor="@color/color_Red_Light"
+            android:textSize="14dp" />
+
+        <ImageView
+            android:id="@+id/img_Avatar"
+            android:layout_width="@dimen/size_Noti_w"
+            android:layout_height="@dimen/size_Noti_w"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:src="@drawable/ic_reward" />
+
+        <TextView
+            android:id="@+id/tv_Game_Name"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="VUA SÂN CỎ"
+            android:textAllCaps="true"
+            android:textColor="@color/color_Blue_Light" />
+
+        <TextView
+            android:id="@+id/tv_Reward_Type"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="GIFTCODE"
+            android:textAllCaps="true"
+            android:textColor="@color/color_Blue_Light"
+            android:textSize="@dimen/size_Text_App_Content" />
+
+        <TextView
+            android:id="@+id/tv_Reward_Serial"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="LOẠI 1"
+            android:textAllCaps="true"
+            android:textColor="@color/color_Blue_Light"
+            android:textSize="@dimen/size_Text_App_Content" />
+
+        <TextView
+            android:id="@+id/tv_Reward_Pin_Code"
+            style="@style/CusTextViewTitileTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="LOẠI 1"
+            android:textAllCaps="true"
+            android:textColor="@color/color_Blue_Light"
+            android:textSize="@dimen/size_Text_App_Content" />
+    </LinearLayout>
+
+</LinearLayout>

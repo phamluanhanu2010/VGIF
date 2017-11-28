@@ -1,0 +1,73 @@
+package com.strategy.intecom.vtc.vgift.common;
+
+
+import android.support.v4.app.Fragment;
+
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.utils.Const;
+import com.strategy.intecom.vtc.vgift.view.FMChangePassword;
+import com.strategy.intecom.vtc.vgift.view.FMDetailNews;
+import com.strategy.intecom.vtc.vgift.view.FMEditProfile;
+import com.strategy.intecom.vtc.vgift.view.FMGameInfo;
+import com.strategy.intecom.vtc.vgift.view.FMGiftcode;
+import com.strategy.intecom.vtc.vgift.view.FMGuide;
+import com.strategy.intecom.vtc.vgift.view.FMNews;
+import com.strategy.intecom.vtc.vgift.view.FMNotification;
+import com.strategy.intecom.vtc.vgift.view.FMGameList;
+import com.strategy.intecom.vtc.vgift.view.FMHistory;
+import com.strategy.intecom.vtc.vgift.view.FMProfile;
+import com.strategy.intecom.vtc.vgift.view.FMGiftcodeDetail;
+import com.strategy.intecom.vtc.vgift.view.FMSearch;
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class FragmentFactory {
+    public static Fragment getFragmentByKey(int key) {
+        switch (key) {
+            case Const.UI_GAMELIST:
+                return new FMGameList();
+            case Const.UI_HISTORY:
+                return new FMHistory();
+            case Const.UI_NOTI:
+                return new FMNotification();
+            case Const.UI_GIFTCODE:
+                return new FMGiftcode();
+            case Const.UI_PROFILE:
+                return new FMProfile();
+            case Const.UI_NEWS:
+                return new FMNews();
+            case Const.UI_GAME_INFO:
+                return new FMGameInfo();
+            case Const.UI_NEWS_DETAIL:
+                return new FMDetailNews();
+            case Const.UI_SHARE_GIFTCODE:
+                return new FMGiftcodeDetail();
+            case Const.UI_EDIT_PROFILE:
+                return new FMEditProfile();
+            case Const.UI_EDIT_PROFILE_CHANGE_PASSWORD:
+                return new FMChangePassword();
+            case Const.UI_SEARCH:
+                return new FMSearch();
+            case Const.UI_GUIDE:
+                return new FMGuide();
+            default:
+                return null;
+        }
+    }
+
+    public static Fragment getFragmentCallBackByKey(int key, Callback callback) {
+        switch (key) {
+            case Const.UI_GAMELIST:
+                return new FMGameList(callback);
+            case Const.UI_NOTI:
+                return new FMNotification(callback);
+            case Const.UI_PROFILE:
+                return new FMProfile(callback);
+            case Const.UI_SHARE_GIFTCODE:
+                return new FMGiftcodeDetail(callback);
+            default:
+                return null;
+        }
+    }
+}

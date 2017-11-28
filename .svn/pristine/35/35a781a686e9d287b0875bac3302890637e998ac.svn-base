@@ -1,0 +1,186 @@
+package com.strategy.intecom.vtc.vgift.adapter;
+
+import android.content.Context;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.util.Util;
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.model.GameListItem;
+import com.strategy.intecom.vtc.vgift.model.GameTypeItem;
+import com.strategy.intecom.vtc.vgift.model.GameTypeModel;
+import com.strategy.intecom.vtc.vgift.utils.Const;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by ThuyChi on 6/22/2016.
+ */
+public class AdtGameType extends ArrayAdapter<String> {
+    Context mContext;
+//    ArrayList<GameTypeItem> mLstGameTypeItem = new ArrayList<GameTypeItem>();
+//    private List<GameListItem> gameList = new ArrayList<>();
+
+//    List<String> lstTitle;
+
+    GameTypeModel gameTypeModel;
+    private AdtGameList mAdapter;
+
+    public AdtGameType(Context context, int resource, GameTypeModel gameTypeModel) {
+        super(context, resource, gameTypeModel.getArrLstGameType());
+        this.mContext = context;
+        this.gameTypeModel = gameTypeModel;
+    }
+
+//    public AdtGameType(Context context, int resource, GameTypeModel gameTypeModel) {
+//        super(context, resource, gameTypeModel.getArrLstGameType());
+//        this.mContext = context;
+////        this.mLstGameTypeItem = new ArrayList<GameTypeItem>(objects);
+//    }
+
+//    @Override
+//    public int getCount() {
+//        if (gameTypeModel == null) {
+//            return 0;
+//        }
+//        return gameTypeModel.getArrLstGameType().size();
+//    }
+
+//    @Override
+//    public String getItem(int position) {
+//        if (gameTypeModel == null) {
+//            return null;
+//        }
+//        return gameTypeModel.getArrLstGameType().get(position);
+//    }
+//
+//    @Override
+//    public long getItemId(int position) {
+//        return position;
+//    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        AppBase.showLog("+++++++++++++++++++++++++++++++++++++++++++++++" + getItem(position));
+        return initView(position, convertView, parent);
+    }
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+        AppBase.showLog("=============================================");
+        return initView(position, convertView, parent);
+    }
+
+    public View initView(final int position, View convertView, ViewGroup parent) {
+        View rowView = convertView;
+        final ViewHolder viewHolder;
+        final String item = getItem(position);
+        if (rowView == null) {
+            LayoutInflater inflate = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            rowView = inflate.inflate(R.layout.tmp_item_game_type, null);
+
+
+            viewHolder = new ViewHolder();
+            viewHolder.tvGameTypeTitle = (TextView) rowView.findViewById(R.id.tv_Game_Type_Title);
+
+            viewHolder.recyclerViewGameItem = (RecyclerView) rowView.findViewById(R.id.rclView_Item);
+
+            viewHolder.recyclerViewGameItem.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    AppBase.showLog("===========================" + dx);
+                    AppBase.showLog("===========================-------" + dy);
+
+                }
+            });
+
+            viewHolder.imgLeftArrow = (ImageView) rowView.findViewById(R.id.img_Left_Arrow);
+            viewHolder.imgLeftArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    viewHolder.recyclerViewGameItem.smoothScrollToPosition(0);
+                    viewHolder.recyclerViewGameItem.smoothScrollBy(-Const.RECYCLERVIEW_SMOOTH, 0);
+                    AppBase.showLog("0000000000000000000");
+                }
+            });
+
+            viewHolder.imgRightArrow = (ImageView) rowView.findViewById(R.id.img_Right_Arrow);
+            viewHolder.imgRightArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewHolder.recyclerViewGameItem.smoothScrollBy(Const.RECYCLERVIEW_SMOOTH, 0);
+                    //viewHolder.recyclerViewGameItem.smoothScrollToPosition(position + 1);
+//                    viewHolder.recyclerViewGameItem.smoothScrollBy(position + 1, position);
+//                    viewHolder.recyclerViewGameItem.smoothScrollToPosition(viewHolder.recyclerViewGameItem.getAdapter().getItemCount());
+                    AppBase.showLog("11111111111111111111");
+                }
+            });
+
+//            for (int i = 0; i < 8; i++) {
+//                GameListItem item = new GameListItem();
+//                item.setContent(String.valueOf(i));
+//                gameList.add(item);
+//            }
+
+//            AppBase.showLog("TEst---" + gameList.size());
+//            mAdapter = new AdtGameList(gameList);
+//            mAdapter.setOnClickListener(new AdtGameList.onClickListener() {
+//                @Override
+//                public void onClickItem(int position) {
+//                    AppBase.showLog("positon:-----" + position);
+//                }
+//            });
+
+//            if(mAdapter == null) {
+            AppBase.showLog("Item---------------------------" + item);
+            AppBase.showLog("=============---------------------------" + gameTypeModel.getArrLstGameType().size());
+
+//            }
+            LinearLayoutManager layoutManager
+                    = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            viewHolder.recyclerViewGameItem.setLayoutManager(layoutManager);
+            viewHolder.recyclerViewGameItem.setItemAnimator(new DefaultItemAnimator());
+
+
+            rowView.setTag(viewHolder);
+        } else {
+            AppBase.showLog("rowView: is not null");
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        final List<GameTypeModel> gameList = gameTypeModel.getHmGameType().get(item);
+        if (gameList != null) {
+            mAdapter = new AdtGameList(gameList, item);
+            mAdapter.setOnClickListener(new AdtGameList.onClickListener() {
+                @Override
+                public void onClickItem(int position) {
+                    AppBase.showLog("callback positon:-----" + position);
+                }
+            });
+        }
+        viewHolder.recyclerViewGameItem.setAdapter(mAdapter);
+
+        viewHolder.tvGameTypeTitle.setText(item);
+
+        return rowView;
+
+    }
+
+    static class ViewHolder {
+        TextView tvGameTypeTitle;
+        RecyclerView recyclerViewGameItem;
+        ImageView imgRightArrow;
+        ImageView imgLeftArrow;
+    }
+}

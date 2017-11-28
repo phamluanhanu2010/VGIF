@@ -1,0 +1,27 @@
+package com.strategy.intecom.vtc.vgift.model;
+
+import java.io.Serializable;
+
+/**
+ * Created by ThuyChi on 9/21/2016.
+ */
+public class NewsItem implements Serializable {
+    public String newsTitile;
+    public String imgUrl;
+
+    public String getNewsTitile() {
+        return newsTitile;
+    }
+
+    public void setNewsTitile(String newsTitile) {
+        this.newsTitile = newsTitile;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+}

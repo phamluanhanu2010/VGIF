@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_Gray"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/tmp_header_bar" />
+
+    <ScrollView
+        android:id="@+id/scrollView_Wrap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_White"
+            android:orientation="vertical"
+            android:padding="@dimen/size_Margin_Space">
+
+            <LinearLayout
+                android:id="@+id/lout_Actived"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_White"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_marginBottom="@dimen/size_Margin_Space"
+                    android:layout_marginTop="@dimen/size_Margin_Space">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_Account" />
+
+                    <TextView
+                        android:id="@+id/tv_Account_Name"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@string/font_family_medium" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_marginBottom="@dimen/size_Margin_Space">
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_Phone_No" />
+
+                    <TextView
+                        android:id="@+id/tv_Phone_No"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:fontFamily="@string/font_family_medium" />
+                </RelativeLayout>
+
+                <include layout="@layout/tmp_line" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_marginBottom="@dimen/size_Margin_Space"
+                    android:layout_marginTop="@dimen/size_Margin_Space">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/toggle_Access_Information"
+                        android:ellipsize="end"
+                        android:fontFamily="@string/font_family_medium"
+                        android:lines="1"
+                        android:text="@string/label_Access_Information" />
+
+                    <ToggleButton
+                        android:id="@+id/toggle_Access_Information"
+                        android:layout_width="@dimen/size_Switch_w"
+                        android:layout_height="@dimen/size_Switch_h"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/toggle_selector"
+                        android:enabled="false"
+                        android:textOff=""
+                        android:textOn="" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_marginBottom="@dimen/size_Margin_Space">
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toLeftOf="@+id/toggle_Recieve_Sms"
+                        android:fontFamily="@string/font_family_medium"
+                        android:text="@string/label_Recieve_Sms" />
+
+                    <ToggleButton
+                        android:id="@+id/toggle_Recieve_Sms"
+                        android:layout_width="@dimen/size_Switch_w"
+                        android:layout_height="@dimen/size_Switch_h"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/toggle_selector"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_marginBottom="@dimen/size_Margin_Space">
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@string/font_family_medium"
+                        android:text="@string/label_Active_Sms" />
+
+                    <EditText
+                        android:id="@+id/edit_Active_Sms"
+                        android:layout_width="40dp"
+                        android:layout_height="@dimen/size_Switch_h"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/tv_bg_sms_num"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:paddingLeft="@dimen/size_Margin_Space"
+                        android:paddingRight="@dimen/size_Margin_Space"
+                        android:textSize="@dimen/size_Text_App_Content" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_marginBottom="@dimen/size_Margin_Space">
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/toggle_Increase_Sms"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@string/label_Increase_Sms" />
+
+                    <ToggleButton
+                        android:id="@+id/toggle_Increase_Sms"
+                        android:layout_width="@dimen/size_Switch_w"
+                        android:layout_height="@dimen/size_Switch_h"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/toggle_selector"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_marginBottom="@dimen/size_Margin_Space">
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/toggle_Decrease_Sms"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@string/label_Decrease_Sms" />
+
+                    <ToggleButton
+                        android:id="@+id/toggle_Decrease_Sms"
+                        android:layout_width="@dimen/size_Switch_w"
+                        android:layout_height="@dimen/size_Switch_h"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/toggle_selector"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h">
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/toggle_OTP_Security"
+                        android:ellipsize="end"
+                        android:fontFamily="@string/font_family_medium"
+                        android:lines="1"
+                        android:text="@string/label_OTP_Security" />
+
+                    <ToggleButton
+                        android:id="@+id/toggle_OTP_Security"
+                        android:layout_width="@dimen/size_Switch_w"
+                        android:layout_height="@dimen/size_Switch_h"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/toggle_selector"
+                        android:enabled="false"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/size_Margin_Space"
+                    android:paddingRight="@dimen/size_Switch_w"
+                    android:text="@string/label_OTP_Security_Guide"
+                    android:textSize="@dimen/size_Text_Label_Small" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h">
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/toggle_ODP_Security"
+                        android:ellipsize="end"
+                        android:fontFamily="@string/font_family_medium"
+                        android:lines="1"
+                        android:text="@string/label_ODP_Security" />
+
+                    <ToggleButton
+                        android:id="@+id/toggle_ODP_Security"
+                        android:layout_width="@dimen/size_Switch_w"
+                        android:layout_height="@dimen/size_Switch_h"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/toggle_selector"
+                        android:enabled="false"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/size_Switch_w"
+                    android:text="@string/label_ODP_Security_Guide"
+                    android:textSize="@dimen/size_Text_Label_Small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/size_Margin_Space_Dialog"
+                    android:paddingRight="@dimen/size_Switch_w"
+                    android:text="@string/label_ODP_Security_Fee"
+                    android:textSize="@dimen/size_Text_Label_Small" />
+
+                <include layout="@layout/tmp_line" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_Error_Message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/size_Margin_Space_Dialog"
+                android:textColor="@color/color_Red_Light" />
+
+            <TextView
+                android:id="@+id/tv_Phone_Active_Msg"
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:gravity="center"
+                android:paddingLeft="@dimen/size_Margin_Space"
+                android:paddingRight="@dimen/size_Margin_Space"
+                android:text="@string/label_Phone_Active_Msg" />
+
+            <Button
+                android:id="@+id/btn_Update"
+                android:layout_width="@dimen/size_btn_update_w"
+                android:layout_height="@dimen/size_btn_update_h"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:background="@drawable/cus_button_green"
+                android:text="@string/title_Btn_Update"
+                android:textColor="@color/color_White" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

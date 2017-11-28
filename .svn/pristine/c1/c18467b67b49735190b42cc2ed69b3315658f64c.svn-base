@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/lout_Game_content"
+        android:layout_width="@dimen/size_Image_Avatar_Game"
+        android:layout_height="@dimen/size_Image_Avatar_Game"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_Game"
+            android:layout_width="@dimen/size_Image_Avatar_Game"
+            android:layout_height="@dimen/size_Image_Avatar_Game"
+            android:background="@drawable/cus_while_border_corner_lout" />
+
+        <ImageView
+            android:id="@+id/img_Corner_Ticked"
+            android:layout_width="@dimen/size_Image_Avatar_Game"
+            android:layout_height="@dimen/size_Image_Avatar_Game"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/img_Border"
+            android:layout_width="@dimen/size_Image_Avatar_Game"
+            android:layout_height="@dimen/size_Image_Avatar_Game"
+            android:background="@drawable/cus_green_border_corner_lout"
+            android:clickable="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_Game_Name"
+        style="@style/CusTextViewContentTheme"
+        android:layout_width="@dimen/size_Image_Icon"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:lines="1"
+        android:text="Game 1"
+        android:textColor="@android:color/black" />
+</LinearLayout>

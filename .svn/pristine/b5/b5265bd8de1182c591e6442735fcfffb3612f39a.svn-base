@@ -1,0 +1,62 @@
+package com.strategy.intecom.vtc.vgift.view;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.strategy.intecom.vtc.vgift.R;
+
+/**
+ * Created by ThuyChi on 10/5/2016.
+ */
+public class FMProfile extends Fragment implements View.OnClickListener {
+    private View viewRoot;
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        viewRoot = inflater.inflate(R.layout.ui_profile, container, false);
+        return viewRoot;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        initController(view);
+    }
+
+    private void initController(View view) {
+
+        LinearLayout loutHistory = (LinearLayout)view.findViewById(R.id.lout_Profile_History);
+        loutHistory.setOnClickListener(this);
+
+        LinearLayout loutGameList = (LinearLayout)view.findViewById(R.id.lout_Profile_Game_List);
+        loutGameList.setOnClickListener(this);
+
+        LinearLayout loutSupport = (LinearLayout)view.findViewById(R.id.lout_Profile_Support);
+        loutSupport.setOnClickListener(this);
+
+        LinearLayout loutIntro = (LinearLayout)view.findViewById(R.id.lout_Profile_Intro);
+        loutIntro.setOnClickListener(this);
+
+        LinearLayout loutExit = (LinearLayout)view.findViewById(R.id.lout_Profile_Exit);
+        loutExit.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.img_Edit:
+
+                break;
+            default:
+                break;
+        }
+    }
+}

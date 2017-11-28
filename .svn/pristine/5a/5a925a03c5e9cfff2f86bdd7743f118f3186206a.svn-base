@@ -1,0 +1,49 @@
+package com.strategy.intecom.vtc.vgift.common;
+
+
+import android.support.v4.app.Fragment;
+
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.utils.Const;
+import com.strategy.intecom.vtc.vgift.view.FMGiftcode;
+import com.strategy.intecom.vtc.vgift.view.FMNews;
+import com.strategy.intecom.vtc.vgift.view.FMNotification;
+import com.strategy.intecom.vtc.vgift.view.FMGameList;
+import com.strategy.intecom.vtc.vgift.view.FMHistory;
+import com.strategy.intecom.vtc.vgift.view.FMProfile;
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class FragmentFactory {
+    public static Fragment getFragmentByKey(int key) {
+        switch (key) {
+            case Const.UI_GAMELIST:
+                return new FMGameList();
+            case Const.UI_HISTORY:
+                return new FMHistory();
+            case Const.UI_NOTI:
+                return new FMNotification();
+            case Const.UI_GIFTCODE:
+                return new FMGiftcode();
+            case Const.UI_PROFILE:
+                return new FMProfile();
+            case Const.UI_NEWS:
+                return new FMNews();
+            default:
+                return null;
+        }
+    }
+
+    public static Fragment getFragmentCallBackByKey(int key, Callback callback) {
+        switch (key) {
+            case Const.UI_GAMELIST:
+                return new FMGameList(callback);
+            case Const.UI_NOTI:
+                return new FMNotification(callback);
+
+            default:
+                return null;
+        }
+    }
+}

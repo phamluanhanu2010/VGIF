@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    sdk_facebook_app_id = 1419051614974250
+    sdk_google_client_id = 1088997532662-jp55oh4mnromp47g6e0uevl6tu5msf66.apps.googleusercontent.com
+    sdk_google_client_secret = H9W2VBg7V_VYw9mw3YcMf1KE
+    sdk_gcm_id = 1088997532662
+    sdk_appsflyer_dev_key = 4toAa4UsXTiSELM98xse83
+    sdk_client_id = 426272e772922aa400fdcac9f47070ed
+    sdk_client_secret_key = 2b43f49d1c223867f6eddaf14d6d8ef8
+    sdk_notification = one
+    sdk_direct_download = no
+    sdk_utm =
+</resources>

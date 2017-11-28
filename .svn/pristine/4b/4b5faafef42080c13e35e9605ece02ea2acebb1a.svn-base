@@ -1,0 +1,27 @@
+package com.strategy.intecom.vtc.vgift.utils;
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class Const {
+    public static int UI_CURRENT_CONTEXT = 0;
+    public static final int UI_GAMELIST = 1;
+    public static final int UI_HISTORY = 2;
+    public static final int UI_NOTI = 3;
+    public static final int UI_GIFTCODE = 4;
+    public static final int UI_PROFILE = 5;
+    public static final int UI_NEWS = 6;
+    public static final int UI_HOME = 6;
+
+    public static int RECYCLERVIEW_SMOOTH = 300;
+
+    public static final int INDEX_ACTION_GAME_LIST = 0;
+    public static final int INDEX_ACTION_GIFT_CODE = 1;
+    public static final int INDEX_ACTION_SPINNING = 2;
+    public static final int INDEX_ACTION_NEWS = 3;
+    public static final int INDEX_ACTION_PROFILE = 4;
+
+    public static final int COUNT_VIEW = 5;
+
+    public static final int IMAGE_CORNER_RADIUS = 30;
+}

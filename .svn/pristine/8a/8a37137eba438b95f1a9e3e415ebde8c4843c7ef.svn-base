@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/lout_Bar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_Blue_Light">
+
+        <ImageView
+            android:id="@+id/img_Back"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/size_Margin_Header_Icon"
+            android:src="@mipmap/ic_back" />
+
+        <TextView
+            android:id="@+id/tv_Titile_View"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerInParent="true"
+            android:text="@string/title_View_HISTORY" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/lout_Date_From"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:layout_weight="4"
+            android:background="@drawable/cus_button_blue_bar"
+            android:paddingLeft="@dimen/size_Margin_Space"
+            android:paddingRight="@dimen/size_Margin_Space">
+
+            <!--<TextView
+                android:id="@+id/tv_Title_From_Date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/size_Margin_Space"
+                android:paddingBottom="@dimen/size_Margin_Space"
+                android:text="Từ ngày:" />-->
+
+            <TextView
+                android:id="@+id/tv_From_Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/img_From_Date"
+                android:paddingBottom="@dimen/size_Margin_Space"
+                android:paddingTop="@dimen/size_Margin_Space"
+                android:text="Từ ngày:"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/img_From_Date"
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_calendar_2" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lout_Date_To"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_Margin_Space"
+            android:layout_marginTop="@dimen/size_Margin_Space"
+            android:layout_weight="4"
+            android:background="@drawable/cus_button_blue_bar"
+            android:paddingLeft="@dimen/size_Margin_Space"
+            android:paddingRight="@dimen/size_Margin_Space">
+
+            <TextView
+                android:id="@+id/tv_To_Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/img_To_Date"
+                android:paddingBottom="@dimen/size_Margin_Space"
+                android:paddingTop="@dimen/size_Margin_Space"
+                android:text="Đến ngày: "
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/img_To_Date"
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+
+                android:src="@drawable/ic_calendar_2" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_View"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:layout_weight="2"
+            android:background="@drawable/cus_button_red"
+            android:gravity="center"
+            android:lines="1"
+            android:padding="@dimen/size_Margin_Space"
+            android:text="Xem" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_btn_main_h"
+        android:layout_margin="@dimen/size_Margin_Space"
+        android:background="@drawable/cus_button_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Ngày" />
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Game" />
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="User" />
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Quà tặng" />
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeFreshLayout_History"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/lst_History"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/size_Margin_Space"></ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

@@ -1,0 +1,56 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="size_Avatar">70dp</dimen>
+    <dimen name="size_Avatar_Large">150dp</dimen>
+    <dimen name="size_Profile_Margin">50dp</dimen>
+
+    <dimen name="size_Icon_In_App">18dp</dimen>
+    <dimen name="size_Icon_Reward_Item">50dp</dimen>
+    <dimen name="size_Margin_Space">8dp</dimen>
+    <dimen name="size_Margin_Space_Dialog">20dp</dimen>
+
+    <dimen name="size_Text_App_Content_Small">10sp</dimen>
+    <dimen name="size_Text_App_Title">18sp</dimen>
+    <dimen name="size_Text_App_Title_View">20sp</dimen>
+    <dimen name="size_Content_Game_Info_Header">200dp</dimen>
+
+    <dimen name="size_Input_Text_h">50dp</dimen>
+
+    <dimen name="size_Icon_Footer_w">45dp</dimen>
+    <dimen name="size_Icon_Footer_Margin">5dp</dimen>
+
+    <dimen name="size_Image_Icon">80dp</dimen>
+
+    <dimen name="size_Image_Avatar_Game">100dp</dimen>
+    <dimen name="size_Content_Game_Info_w">120dp</dimen>
+
+    <dimen name="size_Image_Avatar_Game_Half">50dp</dimen>
+
+    <dimen name="size_Noti_w">80dp</dimen>
+
+    <dimen name="size_Banner_h">150dp</dimen>
+
+    <dimen name="size_Icon_Next_News_w">40dp</dimen>
+
+    <dimen name="size_btn_main_h">40dp</dimen>
+    <dimen name="size_btn_main_w">130dp</dimen>
+    <dimen name="size_btn_corner">20dp</dimen>
+
+
+    <dimen name="size_Icon_Noti">16dp</dimen>
+    <dimen name="size_Icon_Footer_h">25dp</dimen>
+    <dimen name="size_Image_Wheel">400dp</dimen>
+    <dimen name="size_Spinning_Button">130dp</dimen>
+    <dimen name="size_Spinning_Margin_B_T">120dp</dimen>
+    <dimen name="size_Spinning_Margin_R_L">70dp</dimen>
+    <dimen name="size_Spinning_Margin_Center">60dp</dimen>
+    <dimen name="size_Spinning_Arrow_Icon_h">30dp</dimen>
+    <dimen name="size_Spinning_Arrow_Icon_w">55dp</dimen>
+    <dimen name="size_Spinning_Arrow_Icon_Margin">-10dp</dimen>
+
+    <dimen name="size_Image_Corner_Radius_Border">20px</dimen>
+    <integer name="size_Image_Corner_Radius">20</integer>
+    <integer name="size_Image_Corner_Radius_Item_Spinning">20</integer>
+</resources>

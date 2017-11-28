@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_Gray"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/tmp_header_bar" />
+
+    <ScrollView
+        android:id="@+id/scrollView_Wrap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_White"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_White"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/size_Margin_Space_Dialog"
+                android:paddingLeft="@dimen/size_Margin_Space"
+                android:paddingRight="@dimen/size_Margin_Space">
+
+                <LinearLayout
+                    android:id="@+id/lout_Phone_Verify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/size_Margin_Space">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/size_Margin_Space">
+
+                        <ImageView
+                            android:layout_width="@dimen/size_Icon_Edit"
+                            android:layout_height="@dimen/size_Icon_Edit"
+                            android:layout_marginRight="@dimen/size_Margin_Space"
+                            android:background="@drawable/ic_input_account" />
+
+                        <TextView
+                            android:id="@+id/tv_Account_Name"
+                            style="@style/CusTextViewContentTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                    <include layout="@layout/tmp_line" />
+
+                    <LinearLayout
+                        android:id="@+id/lout_Edit_Phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/size_Margin_Space">
+
+                        <ImageView
+                            android:layout_width="@dimen/size_Icon_Edit"
+                            android:layout_height="@dimen/size_Icon_Edit"
+                            android:layout_marginRight="@dimen/size_Margin_Space"
+                            android:src="@drawable/ic_input_phone" />
+
+                        <EditText
+                            android:id="@+id/edit_Phone_No"
+                            style="@style/CusTextViewContentTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/hint_Account_Phone_No"
+                            android:inputType="number"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                    <include layout="@layout/tmp_line" />
+
+                    <LinearLayout
+                        android:id="@+id/lout_New_Phone_No"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/size_Margin_Space">
+
+                        <ImageView
+                            android:layout_width="@dimen/size_Icon_Edit"
+                            android:layout_height="@dimen/size_Icon_Edit"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/size_Margin_Space"
+                            android:src="@drawable/ic_input_phone_star" />
+
+                        <EditText
+                            android:id="@+id/edit_New_Phone_No"
+                            style="@style/CusTextViewContentTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/hint_Account_New_Phone_No"
+                            android:inputType="number"
+                            android:singleLine="true" />
+
+
+                    </LinearLayout>
+
+                    <include
+                        android:id="@+id/line_New_Phone_No"
+                        layout="@layout/tmp_line" />
+
+                    <LinearLayout
+                        android:id="@+id/lout_New_Otp_Code"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/size_Margin_Space"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="@dimen/size_Icon_Edit"
+                            android:layout_height="@dimen/size_Icon_Edit"
+                            android:layout_marginRight="@dimen/size_Margin_Space"
+                            android:src="@drawable/ic_input_qr" />
+
+                        <EditText
+                            android:id="@+id/edit_New_Otp_Code"
+                            style="@style/CusTextViewContentTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/hint_Account_New_Otp_Code"
+                            android:inputType="number"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                    <include layout="@layout/tmp_line" />
+
+                    <RelativeLayout
+                        android:id="@+id/lout_Otp_Code"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/size_Margin_Space">
+
+                        <ImageView
+                            android:id="@+id/ic_Otp"
+                            android:layout_width="@dimen/size_Icon_Edit"
+                            android:layout_height="@dimen/size_Icon_Edit"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/size_Margin_Space"
+                            android:src="@drawable/ic_input_qr" />
+
+                        <EditText
+                            android:id="@+id/edit_Otp_Code"
+                            style="@style/CusTextViewContentTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/ic_Otp"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/hint_Account_Otp_Code2"
+                            android:inputType="number"
+                            android:singleLine="true" />
+
+                        <ImageView
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_SmallLine_h"
+                            android:background="@color/color_Gray" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lout_Email_Edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/size_Margin_Space">
+
+                    <Spinner
+                        android:id="@+id/sp_Secret_Question"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:layout_centerVertical="true"
+                        android:spinnerMode="dropdown" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_SmallLine_h"
+                        android:background="@color/color_Gray" />
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_Margin_Space"
+                        android:text="@string/title_Secret_Question" />
+
+                    <EditText
+                        android:id="@+id/edit_Secret_Question"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:background="@color/transparent"
+                        android:hint="@string/hint_Secret_Question"
+                        android:singleLine="true" />
+
+                    <include layout="@layout/tmp_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/size_Margin_Space">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="@dimen/size_Icon_Edit"
+                            android:layout_marginRight="@dimen/size_Margin_Space"
+                            android:src="@drawable/ic_input_email" />
+
+                        <EditText
+                            android:id="@+id/edit_Current_Email"
+                            style="@style/CusTextViewContentTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/hint_Account_Current_Email"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                    <include layout="@layout/tmp_line" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_Input_Text_h"
+                        android:background="@android:color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/size_Margin_Space">
+
+                        <ImageView
+                            android:layout_width="@dimen/size_Icon_Edit"
+                            android:layout_height="@dimen/size_Icon_Edit"
+                            android:layout_marginRight="@dimen/size_Margin_Space"
+                            android:src="@drawable/ic_input_email_star" />
+
+                        <EditText
+                            android:id="@+id/edit_New_Email"
+                            style="@style/CusTextViewContentTheme"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/hint_Account_New_Email"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                    <include layout="@layout/tmp_line" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_Error_Message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_Margin_Space_Dialog"
+                    android:textColor="@color/color_Red_Light" />
+
+                <Button
+                    android:id="@+id/btn_Update"
+                    android:layout_width="@dimen/size_btn_update_w"
+                    android:layout_height="@dimen/size_btn_update_h"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_button_green"
+                    android:text="@string/title_Btn_Update"
+                    android:textColor="@color/color_White" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_Gray"
+                android:gravity="center"
+                android:padding="@dimen/size_Margin_Space">
+
+                <TextView
+                    android:id="@+id/tv_Otp_Guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

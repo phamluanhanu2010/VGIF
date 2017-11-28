@@ -1,0 +1,38 @@
+package com.strategy.intecom.vtc.vgift.interfaces;
+
+
+import com.strategy.intecom.vtc.vgift.enums.TypeActionConnection;
+
+/**
+ * Created by Thuy Chi on 7/7/16.
+ */
+public interface RequestListener {
+
+//    void onPostExecuteStart(TypeActionConnection keyType, String sApi);
+
+    void onPostExecuteError(TypeActionConnection keyType, String errorcode, String msg, String info, String reponseFullData);
+
+    void onPostExecuteSuccess(TypeActionConnection keyType, String response, String reponseFullData);
+
+    String API_CONNECTION_GET_LIST_GAME = "/vgift/game/listGame";
+    String API_CONNECTION_GET_INFO_GAME = "/vgift/game/getGame";
+    String API_CONNECTION_CREATE_ACCOUNT = "/vgift/user/createuser";
+    String API_CONNECTION_GET_LIST_NOTI = "/vgift/noti/getListNoti";
+    String API_CONNECTION_GET_LIST_REWARD_ALL = "/vgift/reward/historyall";
+    String API_CONNECTION_GET_LIST_REWARD_ACCOUNT = "/vgift/reward/historyaccount";
+    String API_CONNECTION_FIND_EVENT = "/vgift/event/findListEvents";
+    String API_CONNECTION_FIND_GAME = "/vgift/game/findGame";
+    String API_CONNECTION_GET_EVENT_DETAIL = "/vgift/event/getEvent";
+    String API_CONNECTION_GET_LIST_GIFTCODE = "/vgift/event/listEvent";
+    String API_CONNECTION_READ_NOTI = "/vgift/noti/readNotification";
+    String API_CONNECTION_DELETE_NOTI = "/vgift/noti/deleteNotification";
+    String API_CONNECTION_GET_SPINNING_INFO = "/vgift/rotation/getRotation";
+    String API_CONNECTION_GET_CHOOSE_GAME = "/vgift/rotation/chooseGame";
+    String API_CONNECTION_SHARE_MISSION = "/vgift/event/processshare";
+    String API_CONNECTION_DOWNLOAD_MISSION = "/vgift/event/processdown";
+    String API_CONNECTION_GET_SPINNING_RESULT = "/vgift/rotation/processrotate";
+    String API_CONNECTION_GET_ADS_LIST = "/vgift/adsbanner/listadvertisement";
+    String API_CONNECTION_GET_LIST_NEWS = "https://vtcgame.vn/Handler/news/?cateId=6&page=1&pageSize=6";
+
+
+}

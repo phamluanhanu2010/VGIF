@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/color_Blue_Light"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/lout_Action_Game"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/CusImageViewFooterTheme"
+            android:src="@drawable/ic_action_game" />
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:textColor="@android:color/white"
+            android:text="@string/title_Icon_Game_List" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lout_Action_Giftcode"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/CusImageViewFooterTheme"
+            android:src="@drawable/ic_action_giftcode" />
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:textColor="@android:color/white"
+            android:text="@string/title_Icon_Giftcode" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lout_Action_Spinning"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/CusImageViewFooterTheme"
+            android:src="@drawable/ic_action_spinning" />
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:textColor="@android:color/white"
+            android:text="@string/title_Icon_Spinning" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lout_Action_News"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/CusImageViewFooterTheme"
+            android:src="@drawable/ic_action_news" />
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:textColor="@android:color/white"
+            android:text="@string/title_Icon_News" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lout_Action_Profile"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            style="@style/CusImageViewFooterTheme"
+            android:src="@drawable/ic_action_profile" />
+
+        <TextView
+            style="@style/CusTextViewContentTheme"
+            android:textColor="@android:color/white"
+            android:text="@string/title_Icon_Profile" />
+    </LinearLayout>
+
+</LinearLayout>

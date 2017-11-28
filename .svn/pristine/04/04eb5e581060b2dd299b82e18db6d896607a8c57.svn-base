@@ -1,0 +1,345 @@
+package com.strategy.intecom.vtc.vgift.common;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.utils.Const;
+import com.strategy.intecom.vtc.vgift.utils.PreferenceUtil;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class AppBase {
+    private static FragmentActivity mActivity;
+    private static PreferenceUtil preferenceUtil;
+
+    public static FragmentActivity getActivity() {
+        return mActivity;
+    }
+
+    public static void setActivity(FragmentActivity mActivity) {
+        AppBase.mActivity = mActivity;
+    }
+
+    /**
+     * Call Fragment
+     *
+     * @param key            the key for fragment on class FragmentFactory.class
+     * @param bundle         put data using bundle
+     * @param isAddBackStack add back stack yes or no
+     */
+    public static void callNewFragment(int key, Bundle bundle, boolean isAddBackStack) {
+        Const.UI_CURRENT_CONTEXT = key;
+        System.gc();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        Fragment fragment = FragmentFactory.getFragmentByKey(key);
+        if (fragment != null) {
+            fragment.setArguments(bundle);
+        }
+        fragmentTransaction.add(R.id.drawer_Wrap_Layout, fragment);
+
+        if (isAddBackStack) {
+            if (fragment != null) {
+                fragmentTransaction.addToBackStack(String.valueOf(fragment.getClass().getClass()));
+            }
+        }
+
+        fragmentTransaction.commit();
+    }
+
+    /**
+     * Call Fragment
+     *
+     * @param key            the key for fragment on class FragmentFactory.class
+     * @param bundle         put data using bundle
+     * @param isAddBackStack add back stack yes or no
+     * @param callback       return data
+     */
+    public static void callNewFragmentCallBack(int key, Bundle bundle, boolean isAddBackStack, Callback callback) {
+        Const.UI_CURRENT_CONTEXT = key;
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        Fragment fragment = FragmentFactory.getFragmentCallBackByKey(key, callback);
+        if (fragment != null) {
+            fragment.setArguments(bundle);
+        }
+        fragmentTransaction.add(R.id.lout_Main_Container, fragment);
+
+        if (isAddBackStack) {
+            if (fragment != null) {
+                fragmentTransaction.addToBackStack(String.valueOf(fragment.getClass().getClass()));
+            }
+        }
+
+        fragmentTransaction.commit();
+    }
+
+    public static void initBack() {
+        getActivity().getSupportFragmentManager().popBackStack();
+    }
+
+    public static void showLog(String msg) {
+        Log.i("Luanpv : ", "----------------- : " + msg);
+    }
+
+    /**
+     * Check internet connected or not
+     *
+     * @param context context of class
+     * @return boolean true or false
+     */
+    public static boolean isNetworkConnected(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            return true;
+        }
+
+        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        if (mobileNetwork != null && mobileNetwork.isConnected()) {
+            return true;
+        }
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Call check service running or not
+     *
+     * @param context context of class
+     * @return true or false
+     */
+    public static boolean checkPlayServices(final Context context) {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(context);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                //apiAvailability.getErrorDialog(context, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+                AppBase.showLog("checkPlayServices" + "resultCode" + String.valueOf(resultCode));
+            } else {
+                //AppCore.showLog(TAG, "This device is not supported.");
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public static PreferenceUtil preferenceUtil(Context context) {
+        if (preferenceUtil == null) {
+            preferenceUtil = new PreferenceUtil(context);
+        }
+        return preferenceUtil;
+    }
+
+    public static void setImageWithCorner(String url, final ImageView img) {
+        Glide.with(getActivity()).load(url).asBitmap().error(R.drawable.avatar_game).centerCrop().into(new BitmapImageViewTarget(img) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(AppBase.getActivity().getResources(), resource);
+//                circularBitmapDrawable.setCircular(true);
+                circularBitmapDrawable.setCornerRadius(Const.IMAGE_CORNER_RADIUS);
+                img.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+    }
+
+    public static void setImageWithUrl(String url, final ImageView img) {
+        Glide.with(getActivity()).load(url).asBitmap().error(R.drawable.bg_banner_2).centerCrop().into(new BitmapImageViewTarget(img) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(AppBase.getActivity().getResources(), resource);
+//                circularBitmapDrawable.setCircular(true);
+//                circularBitmapDrawable.setCornerRadius(Const.IMAGE_CORNER_RADIUS);
+                img.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+    }
+
+    public static String getSizeName(Context context) {
+        int screenLayout = context.getResources().getConfiguration().screenLayout;
+        screenLayout &= Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        switch (screenLayout) {
+            case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                return "small";
+            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                return "normal";
+            case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                return "large";
+            case Configuration.SCREENLAYOUT_SIZE_XLARGE:
+                return "xlarge";
+            default:
+                return "undefined";
+        }
+    }
+
+    public static String getDeviceResolution(Context mContext) {
+        int density = mContext.getResources().getDisplayMetrics().densityDpi;
+        switch (density) {
+            case DisplayMetrics.DENSITY_MEDIUM:
+                return "MDPI";
+            case DisplayMetrics.DENSITY_HIGH:
+                return "HDPI";
+            case DisplayMetrics.DENSITY_LOW:
+                return "LDPI";
+            case DisplayMetrics.DENSITY_XHIGH:
+                return "XHDPI";
+            case DisplayMetrics.DENSITY_TV:
+                return "TV";
+            case DisplayMetrics.DENSITY_XXHIGH:
+                return "XXHDPI";
+            case DisplayMetrics.DENSITY_XXXHIGH:
+                return "XXXHDPI";
+            default:
+                return "Unknown";
+        }
+    }
+
+    public static void startWebView(final Context mContext, WebView webView, String url) {
+        //Create new webview Client to show progress dialog
+        //When opening a url or click on link
+
+        webView.setWebViewClient(new WebViewClient() {
+            ProgressDialog progressDialog;
+
+            //If you will not use this method url links are opeen in new brower not in webview
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            //Show loader on url load
+            public void onLoadResource(WebView view, String url) {
+                if (progressDialog == null) {
+                    // in standard case YourActivity.this
+                    progressDialog = new ProgressDialog(mContext);
+                    progressDialog.setMessage("Loading...");
+                    progressDialog.show();
+
+                }
+            }
+
+            @SuppressWarnings("deprecation")
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                super.onReceivedError(view, errorCode, description, failingUrl);
+            }
+
+            public void onPageFinished(WebView view, String url) {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+
+                AppBase.showLog("URL: " + url);
+                AppBase.showLog("Titile: " + view.getTitle());
+                String tittile = view.getTitle();
+                if (tittile != null && !tittile.isEmpty()) {
+                    // doSomething
+                    // handleCallBack(tittile);
+                }
+            }
+        });
+
+        // Javascript inabled on webview
+        //webView.getSettings().setJavaScriptEnabled(true);
+
+        //Load url in webview
+        webView.loadUrl(url);
+    }
+
+    public static Boolean checkAppExisting(String packageName, Context mContext) {
+//        try {
+//            getActivity().getPackageManager().getPackageInfo(pacekageName, 0);
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+        PackageManager pm = mContext.getPackageManager();
+        try {
+            PackageInfo info = pm.getPackageInfo(packageName, PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String checkStringNull(String str) {
+        if ((str.equals("null")) || str.equals(null)) {
+            str = "";
+        }
+        return str;
+    }
+
+    public static String longToDateTime(long time) {
+        String dateString = new SimpleDateFormat("dd/MM/yyyy").format(new Date(time));
+        return dateString;
+    }
+
+    public static void initToolsHeaderBar(final Activity context, final boolean isTrue) {
+        if (context == null) {
+            return;
+        }
+
+        context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    Window window = context.getWindow();
+
+                    // clear FLAG_TRANSLUCENT_STATUS flag:
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+                    // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+                    // finally change the color
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        if (isTrue) {
+                            window.setStatusBarColor(context.getResources().getColor(R.color.color_Blue_Light));
+                        } else {
+                            window.setStatusBarColor(context.getResources().getColor(android.R.color.transparent));
+                        }
+                    }
+                }
+            }
+        });
+    }
+}

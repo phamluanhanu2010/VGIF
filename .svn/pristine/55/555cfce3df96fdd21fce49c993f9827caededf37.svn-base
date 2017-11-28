@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cus_border_lout"
+        android:gravity="center"
+        android:padding="@dimen/size_Margin_Space">
+
+        <TextView
+            android:id="@+id/tv_Titile"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:gravity="center"
+            android:text="@string/title_Dialog_Emergency"
+            android:textColor="@android:color/holo_red_light" />
+
+        <TextView
+            android:id="@+id/tv_Logout_Content"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Titile"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:gravity="center"
+            android:text="@string/content_Dialog_Force_Logout" />
+
+        <Button
+            android:id="@+id/btn_Ok"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/tv_Logout_Content"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="@dimen/size_btn_main_w"
+            android:layout_height="@dimen/size_btn_main_h"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:layout_toRightOf="@+id/btn_Login"
+            android:background="@drawable/cus_button_green"
+            android:gravity="center"
+            android:text="@string/btn_Dialog_Force_Logout_Ok" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

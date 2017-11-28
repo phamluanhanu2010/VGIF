@@ -1,0 +1,299 @@
+package vtc.game.app.vcoin.vtcpay.view;
+
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import vtc.game.app.vcoin.vtcpay.R;
+import vtc.game.app.vcoin.vtcpay.adapter.AdtNoti;
+import vtc.game.app.vcoin.vtcpay.common.AppBase;
+import vtc.game.app.vcoin.vtcpay.common.VtcString;
+import vtc.game.app.vcoin.vtcpay.connection.VtcConnection;
+import vtc.game.app.vcoin.vtcpay.connection.VtcHttpConnection;
+import vtc.game.app.vcoin.vtcpay.enums.TypeActionConnection;
+import vtc.game.app.vcoin.vtcpay.interfaces.Callback;
+import vtc.game.app.vcoin.vtcpay.interfaces.RequestListener;
+import vtc.game.app.vcoin.vtcpay.model.NotiItem;
+import vtc.game.app.vcoin.vtcpay.utils.Const;
+import vtc.game.app.vcoin.vtcpay.utils.ConstParam;
+
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class FMNotification extends Fragment implements View.OnClickListener, RequestListener, SwipeRefreshLayout.OnRefreshListener {
+    private View viewRoot;
+    private Callback callback;
+    private ListView listViewEmail;
+    private AdtNoti mAdapter;
+    private VtcConnection vtcConnection;
+    private Dialog dlReward;
+    private SwipeRefreshLayout swipeRefreshLayoutNotis;
+    private int notiType = -1;
+    private boolean isAutoNoti;
+
+    public FMNotification() {
+
+    }
+
+    @SuppressLint("ValidFragment")
+    public FMNotification(Callback callback) {
+        this.callback = callback;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        viewRoot = inflater.inflate(R.layout.ui_notification, container, false);
+        return viewRoot;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        swipeRefreshLayoutNotis = (SwipeRefreshLayout) view.findViewById(R.id.swipeFreshLayout_Notis);
+        swipeRefreshLayoutNotis.setOnRefreshListener(this);
+
+        listViewEmail = (ListView) view.findViewById(R.id.lst_Email);
+
+        ImageView imgBack = (ImageView) view.findViewById(R.id.img_Back);
+        imgBack.setOnClickListener(this);
+
+        vtcConnection = new VtcConnection(getContext(), this);
+        initGetData();
+
+        dlReward = new Dialog(getContext());
+        dlReward.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dlReward.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dlReward.setContentView(R.layout.dl_reward_item);
+        dlReward.setCancelable(true);
+
+    }
+
+    private void initGetData() {
+        Map<String, String> mapInfoGame = new HashMap<>();
+        mapInfoGame.put(ConstParam.PARAM_REQUEST_ACCESS_TOKEN, VtcString.ACCESS_TOKEN);
+        mapInfoGame.put(ConstParam.PARAM_REQUEST_USERNAME, VtcString.USER_NAME);
+        mapInfoGame.put(ConstParam.PARAM_REQUEST_ACCOUNT_ID, VtcString.ACCOUNT_ID);
+
+        vtcConnection.onExcuteProcess(TypeActionConnection.TYPE_ACTION_GET_LIST_NOTI, RequestListener.API_CONNECTION_GET_LIST_NOTI + VtcHttpConnection.urlEncodeUTF8(mapInfoGame), false, "");
+
+    }
+
+    private void initData(String data) {
+        try {
+            JSONArray jsonArrayData = new JSONArray(data);
+            if (jsonArrayData.length() > 0) {
+                final List<NotiItem> lst = new ArrayList<>();
+                int count = 0;
+                for (int i = 0; i < jsonArrayData.length(); i++) {
+                    NotiItem item = new NotiItem();
+
+                    item.setNotiID(jsonArrayData.optJSONObject(i).optString(ConstParam.NOTIFICATION_ID));
+                    item.setNotiTitle(jsonArrayData.optJSONObject(i).optString(ConstParam.TITILE));
+                    item.setNotiType(jsonArrayData.optJSONObject(i).optInt(ConstParam.TYPE));
+                    item.setLink(jsonArrayData.optJSONObject(i).optString(ConstParam.LINK));
+                    item.setPictureUrl(jsonArrayData.optJSONObject(i).optString(ConstParam.PICTURE_NOTI_URL));
+                    item.setCreateTime(jsonArrayData.optJSONObject(i).optLong(ConstParam.CREATE_DATE));
+                    item.setOpen(jsonArrayData.optJSONObject(i).optBoolean(ConstParam.IS_OPEN));
+                    item.setAutoNoti(jsonArrayData.optJSONObject(i).optBoolean(ConstParam.FLAG_AUTO_NOTIFICATION));
+                    if (!jsonArrayData.optJSONObject(i).optBoolean(ConstParam.IS_OPEN)) {
+                        count++;
+                    }
+                    lst.add(item);
+                }
+                AppBase.preferenceUtil(getContext()).setValueInt(VtcString.KEY_NOTIFICATION, count);
+
+                mAdapter = new AdtNoti(getContext(), R.layout.tmp_item_noti, lst);
+                mAdapter.setOnClickItem(new AdtNoti.onClickItem() {
+                    @Override
+                    public void onClickItem(String notiID, NotiItem item) {
+
+                        if (!item.isOpen()) {
+                            AppBase.preferenceUtil(getContext()).setValueInt(VtcString.KEY_NOTIFICATION, AppBase.preferenceUtil(getContext()).getValueInt(VtcString.KEY_NOTIFICATION) - 1);
+//                            callback.onHandlerCallBack(0);
+                        }
+
+                        AppBase.showLog("---------------Click NotiID: " + notiID);
+                        notiType = item.getNotiType();
+                        isAutoNoti = item.isAutoNoti;
+                        if (item.getNotiType() == 1) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString(ConstParam.BUNDLE_KEY_WEBVIEW_LINK, item.getLink());
+                            bundle.putString(ConstParam.BUNDLE_KEY_WEBVIEW_TITILE, getResources().getString(R.string.title_View_NOTIFICATION));
+                            AppBase.callNewFragment(Const.UI_GUIDE, bundle, true);
+                        }
+                        initReadNoti(notiID);
+                    }
+
+                    @Override
+                    public void onDeleteItem(String notiID, NotiItem item) {
+                        AppBase.showLog("---------------Delete NotiID: " + notiID);
+                        if (!item.isOpen()) {
+                            AppBase.preferenceUtil(getContext()).setValueInt(VtcString.KEY_NOTIFICATION, AppBase.preferenceUtil(getContext()).getValueInt(VtcString.KEY_NOTIFICATION) - 1);
+                        }
+                        initDeteleNoti(notiID);
+                    }
+                });
+                listViewEmail.setAdapter(mAdapter);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initReadNoti(String notiID) {
+        HashMap<String, String> mapData = new HashMap<>();
+
+        mapData.put(ConstParam.PARAM_REQUEST_ACCESS_TOKEN, VtcString.ACCESS_TOKEN);
+        mapData.put(ConstParam.PARAM_REQUEST_USERNAME, VtcString.USER_NAME);
+        mapData.put(ConstParam.PARAM_REQUEST_ACCOUNT_ID, VtcString.ACCOUNT_ID);
+        mapData.put(ConstParam.PARAM_REQUEST_NOTIFICATION, notiID);
+        vtcConnection.onExcuteProcess(TypeActionConnection.TYPE_ACTION_READ_NOTI, RequestListener.API_CONNECTION_READ_NOTI + VtcHttpConnection.urlEncodeUTF8(mapData), true);
+
+    }
+
+    private void initDeteleNoti(String notiID) {
+        HashMap<String, String> mapData = new HashMap<>();
+        mapData.put(ConstParam.PARAM_REQUEST_ACCESS_TOKEN, VtcString.ACCESS_TOKEN);
+        mapData.put(ConstParam.PARAM_REQUEST_USERNAME, VtcString.USER_NAME);
+        mapData.put(ConstParam.PARAM_REQUEST_ACCOUNT_ID, VtcString.ACCOUNT_ID);
+        mapData.put(ConstParam.PARAM_REQUEST_NOTIFICATION, notiID);
+        vtcConnection.onExcuteProcess(TypeActionConnection.TYPE_ACTION_DELETE_NOTI, RequestListener.API_CONNECTION_DELETE_NOTI + VtcHttpConnection.urlEncodeUTF8(mapData), true);
+
+    }
+
+    private void initShowPopUp(String response) {
+
+
+        try {
+            JSONObject jsonObjectData = new JSONObject(response);
+            if (!isAutoNoti) {
+                ImageView imgDLAvatar = (ImageView) dlReward.findViewById(R.id.img_Avatar_Game);
+                TextView tvDLGameName = (TextView) dlReward.findViewById(R.id.tv_Game_Name);
+                TextView tvDLRewardType = (TextView) dlReward.findViewById(R.id.tv_Reward_Type);
+                TextView tvDLRewardDescription = (TextView) dlReward.findViewById(R.id.tv_Reward_Description);
+                TextView tvDLRewardTitle = (TextView) dlReward.findViewById(R.id.tv_Titile);
+                TextView tvDLRewardPinCode = (TextView) dlReward.findViewById(R.id.tv_Reward_Pin_Code);
+                ImageView imgClosePopup = (ImageView) dlReward.findViewById(R.id.img_Close_Popup);
+                imgClosePopup.setOnClickListener(this);
+
+                AppBase.setImageWithCorner(jsonObjectData.optString(ConstParam.PICTURE_NOTI_URL), imgDLAvatar);
+                tvDLGameName.setText(jsonObjectData.optString(ConstParam.NAME_GAME));
+                tvDLRewardTitle.setText(jsonObjectData.optString(ConstParam.TYPE_REWARD_STRING));
+                tvDLRewardDescription.setText(jsonObjectData.optString(ConstParam.REWARD_DESCRIPTION));
+                if (jsonObjectData.optInt(ConstParam.ROOT_TYPE_REWARD) == 0) {
+                    tvDLRewardPinCode.setVisibility(View.GONE);
+                    tvDLRewardType.setText(jsonObjectData.optString(ConstParam.CODE_SERIAL));
+                    dlReward.show();
+                } else if (jsonObjectData.optInt(ConstParam.ROOT_TYPE_REWARD) == 1) {
+                    tvDLRewardPinCode.setVisibility(View.VISIBLE);
+                    tvDLRewardPinCode.setText("P/N: " + jsonObjectData.optString(ConstParam.CODE_PIN));
+                    tvDLRewardType.setText("Serial: " + jsonObjectData.optString(ConstParam.CODE_SERIAL));
+                    dlReward.show();
+                }
+            } else {
+                final Dialog dlAutoNoti = new Dialog(getContext());
+                dlAutoNoti.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dlAutoNoti.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dlAutoNoti.setContentView(R.layout.dl_noti);
+                dlAutoNoti.setCancelable(true);
+
+                TextView tvTitile = (TextView) dlAutoNoti.findViewById(R.id.tv_Titile);
+                TextView tvContent = (TextView) dlAutoNoti.findViewById(R.id.tv_Logout_Content);
+                tvTitile.setText(jsonObjectData.optString(ConstParam.TITILE));
+                tvContent.setText(jsonObjectData.optString(ConstParam.CONTENT));
+
+                ImageView imgClosePopup = (ImageView) dlAutoNoti.findViewById(R.id.img_Close_Popup);
+                imgClosePopup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dlAutoNoti.dismiss();
+                    }
+                });
+
+                dlAutoNoti.show();
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.img_Back:
+                AppBase.initBack();
+                callback.onHandlerCallBack(0);
+                break;
+            case R.id.img_Close_Popup:
+                dlReward.dismiss();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onPostExecuteError(TypeActionConnection keyType, String errorcode, String msg, String info, String reponseFullData) {
+        switch (keyType) {
+            case TYPE_ACTION_GET_LIST_NOTI:
+                if (swipeRefreshLayoutNotis != null) {
+                    swipeRefreshLayoutNotis.setRefreshing(false);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void onPostExecuteSuccess(TypeActionConnection keyType, String message, String info, String reponseFullData) {
+        switch (keyType) {
+            case TYPE_ACTION_GET_LIST_NOTI:
+                AppBase.showLog("onPostExecuteSuccess---TYPE_ACTION_GET_LIST_NOTI: " + info);
+                initData(info);
+                if (swipeRefreshLayoutNotis != null) {
+                    swipeRefreshLayoutNotis.setRefreshing(false);
+                }
+                break;
+            case TYPE_ACTION_READ_NOTI:
+                AppBase.showLog("onPostExecuteSuccess---TYPE_ACTION_READ_NOTI: " + info);
+                if (notiType == 0) {
+                    if (!info.equals(""))
+                        initShowPopUp(info);
+                }
+                break;
+            case TYPE_ACTION_DELETE_NOTI:
+                AppBase.showLog("onPostExecuteSuccess---TYPE_ACTION_DELETE_NOTI: " + info);
+                break;
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+        initGetData();
+    }
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_Margin_Space"
+        android:background="@drawable/cus_border_lout"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img_Exit"
+            android:layout_width="@dimen/size_Icon_Footer_h"
+            android:layout_height="@dimen/size_Icon_Footer_h"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:src="@drawable/ic_delete"
+            android:tint="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tv_Titile"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_Exit"
+            android:gravity="center"
+            android:text="@string/title_Dialog_Emergency"
+            android:textColor="@android:color/holo_red_light" />
+
+        <TextView
+            android:id="@+id/tv_Content"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Titile"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:gravity="center"
+            android:text="@string/content_Dialog_Emergency" />
+
+        <TextView
+            android:id="@+id/tv_Content_Time"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Content"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:gravity="center"
+            android:text="@string/content_Dialog_Emergency_Time" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Content_Time"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_Register"
+                style="@style/CusTextViewTitileViewTheme"
+                android:gravity="center"
+                android:layout_width="@dimen/size_btn_main_w"
+                android:layout_height="@dimen/size_btn_main_h"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:layout_toRightOf="@+id/btn_Login"
+                android:background="@drawable/cus_button_green"
+                android:text="@string/btn_Dialog_Emergency_Register" />
+
+            <Button
+                android:id="@+id/btn_Login"
+                style="@style/CusTextViewTitileViewTheme"
+                android:gravity="center"
+                android:layout_width="@dimen/size_btn_main_w"
+                android:layout_height="@dimen/size_btn_main_h"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:background="@drawable/cus_button_orange"
+                android:text="@string/btn_Dialog_Emergency_Login" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_Gray"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/tmp_header_bar" />
+
+    <ScrollView
+        android:id="@+id/scrollView_Wrap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_White"
+            android:orientation="vertical"
+            android:padding="@dimen/size_Margin_Space">
+
+            <LinearLayout
+                android:id="@+id/lout_Active"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_White"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_marginBottom="@dimen/size_Margin_Space"
+                    android:layout_marginTop="@dimen/size_Margin_Space">
+
+                    <TextView
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@string/font_family_medium"
+                        android:text="@string/label_Login_Security" />
+
+                    <ToggleButton
+                        android:id="@+id/toggle_Access_Information"
+                        android:layout_width="@dimen/size_Switch_w"
+                        android:layout_height="@dimen/size_Switch_h"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/toggle_selector"
+                        android:textOff=""
+                        android:textOn="" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_Access_Information_Guide"
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_Access_Informaiton_Service_Guide" />
+
+                <TextView
+                    android:id="@+id/tv_Error_Message_Active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_Margin_Space_Dialog"
+                    android:textColor="@color/color_Red_Light" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lout_Deactive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/size_Margin_Space"
+                android:background="@color/color_White"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Account_Lout_h"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:fontFamily="@string/font_family_medium"
+                    android:gravity="center"
+                    android:text="@string/label_Cancel_Account_Seurity" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Input_Text_h"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/sp_Otp_Type"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
+                <include layout="@layout/tmp_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Input_Text_h"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_Icon_Edit"
+                        android:layout_height="@dimen/size_Icon_Edit"
+                        android:layout_marginRight="@dimen/size_Margin_Space"
+                        android:background="@drawable/ic_input_qr" />
+
+                    <EditText
+                        android:inputType="number"
+                        android:id="@+id/edit_Otp_Code"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/hint_Account_Otp_Code"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <include layout="@layout/tmp_line" />
+
+                <TextView
+                    android:id="@+id/tv_Otp_Guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/size_Text_Label_Small" />
+
+                <TextView
+                    android:id="@+id/tv_Error_Message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_Margin_Space_Dialog"
+                    android:textColor="@color/color_Red_Light" />
+
+                <Button
+                    android:id="@+id/btn_Cancel_Register"
+                    android:layout_width="@dimen/size_btn_update_w"
+                    android:layout_height="@dimen/size_btn_update_h"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_button_orange_dark"
+                    android:text="@string/title_Btn_Cancel_Register"
+                    android:textColor="@color/color_White" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lout_Update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_Margin_Space"
+                android:background="@color/color_White"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_Phone_Active_Msg"
+                    style="@style/CusTextViewContentTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/size_Margin_Space"
+                    android:paddingRight="@dimen/size_Margin_Space"
+                    android:text="@string/label_Phone_Active_Msg" />
+
+                <Button
+                    android:id="@+id/btn_Update"
+                    android:layout_width="@dimen/size_btn_update_w"
+                    android:layout_height="@dimen/size_btn_update_h"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_button_green"
+                    android:text="@string/title_Btn_Update"
+                    android:textColor="@color/color_White" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

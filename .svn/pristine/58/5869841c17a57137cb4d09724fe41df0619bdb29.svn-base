@@ -1,0 +1,679 @@
+package com.strategy.intecom.vtc.vgift;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.strategy.intecom.vtc.tracking.AppConfig;
+import com.strategy.intecom.vtc.tracking.SDKManager;
+import com.strategy.intecom.vtc.vgift.adapter.AdtNoti;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.common.VtcString;
+import com.strategy.intecom.vtc.vgift.connection.VtcConnection;
+import com.strategy.intecom.vtc.vgift.connection.VtcHttpConnection;
+import com.strategy.intecom.vtc.vgift.custom.ViewPageCus;
+import com.strategy.intecom.vtc.vgift.enums.TypeActionConnection;
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.interfaces.RequestListener;
+import com.strategy.intecom.vtc.vgift.model.NotiItem;
+import com.strategy.intecom.vtc.vgift.service.RegistrationService;
+import com.strategy.intecom.vtc.vgift.utils.Const;
+import com.strategy.intecom.vtc.vgift.utils.ConstParam;
+import com.strategy.intecom.vtc.vgift.view.FMGameList;
+import com.strategy.intecom.vtc.vgift.view.FMGiftcode;
+import com.strategy.intecom.vtc.vgift.view.FMNews;
+import com.strategy.intecom.vtc.vgift.view.FMProfile;
+import com.strategy.intecom.vtc.vgift.view.FMSpinning;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, RequestListener {
+    public Bundle bundle = new Bundle();
+
+    private int REQUEST_CAMERA = 0;
+    private int SELECT_FILE = 1;
+    private Dialog dlEmergency;
+    private ViewPageCus viewPager;
+    private TextView tvTitileView;
+    private LinearLayout loutProfile;
+    private LinearLayout loutGiftcode;
+    private LinearLayout loutNews;
+    private LinearLayout loutGameList;
+    private LinearLayout loutSpinning;
+    private int loutFlag = -1;
+    public static TextView tvNoti;
+    private static Context mContext;
+    private BroadcastReceiver mReceiverNoti;
+    private MyPagerAdapter pagerAdapter;
+    private ImageView imgSearch, imgEdit, imgHistory, imgGuide;
+    private Callback callback;
+    private static Activity mActivity;
+    private int searchFlag = 0;
+    private VtcConnection vtcConnection;
+    private int spinningFlag = 0;
+
+
+    public MainActivity() {
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        this.mContext = this;
+        this.mActivity = this;
+
+        AppConfig appConfig = new AppConfig();
+//        appConfig.setFacebookAppID("1419051614974250");
+        appConfig.setFacebookAppID("1679743295686335");
+        appConfig.setGoogleClientID("1088997532662-d3v24gd8tfks2h89mfinchnsbdmvmn5l.apps.googleusercontent.com");
+        appConfig.setGoogleClientSecret("q3KilQYevyVxXGrD92wGLQUH");
+        appConfig.setGcmID(this.getResources().getString(R.string.gcm_Sender_Id));
+        SDKManager.initStartSDK(this, "426272e772922aa400fdcac9f47070ed", "2b43f49d1c223867f6eddaf14d6d8ef8", appConfig);
+
+
+        // get bundle
+        if (bundle == null && getIntent() != null) {
+            bundle = getIntent().getExtras();
+        }
+        if (bundle != null) {
+            if (bundle.containsKey("type")) {
+                int type = bundle.getInt("type");
+                String message = bundle.getString("message");
+                AppBase.showLog("type:" + type);
+                AppBase.showLog("message:" + message);
+            }
+        }
+        initController();
+    }
+
+    private void initController() {
+        AppBase.showLog("Resolution: " + AppBase.getDeviceResolution(this) + "----SCREEN------" + AppBase.getSizeName(this));
+
+        AppBase.setActivity(this);
+
+        //change header color
+        AppBase.initToolsHeaderBar(this, true);
+
+        intGetDeviceToken(this);
+        dlEmergency = new Dialog(this);
+        dlEmergency.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dlEmergency.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dlEmergency.setContentView(R.layout.dl_emergency);
+        dlEmergency.setCancelable(false);
+        dlEmergency.show();
+
+        vtcConnection = new VtcConnection(this, this);
+
+        Button btnLogin = (Button) dlEmergency.findViewById(R.id.btn_Login);
+        btnLogin.setOnClickListener(this);
+
+        Button btnRegister = (Button) dlEmergency.findViewById(R.id.btn_Register);
+        btnRegister.setOnClickListener(this);
+
+        ImageView imgExit = (ImageView) dlEmergency.findViewById(R.id.img_Exit);
+        imgExit.setOnClickListener(this);
+
+        pagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
+
+
+        viewPager = (ViewPageCus) findViewById(R.id.viewpage_Content);
+        viewPager.setAdapter(pagerAdapter);
+        viewPager.setPagingEnabled(false);
+        viewPager.setOffscreenPageLimit(Const.COUNT_VIEW);
+
+
+        loutGiftcode = (LinearLayout) findViewById(R.id.lout_Action_Giftcode);
+        loutGiftcode.setOnClickListener(this);
+
+        loutProfile = (LinearLayout) findViewById(R.id.lout_Action_Profile);
+        loutProfile.setOnClickListener(this);
+
+        loutSpinning = (LinearLayout) findViewById(R.id.lout_Action_Spinning);
+        loutSpinning.setOnClickListener(this);
+
+        loutNews = (LinearLayout) findViewById(R.id.lout_Action_News);
+        loutNews.setOnClickListener(this);
+
+        loutGameList = (LinearLayout) findViewById(R.id.lout_Action_Game);
+        loutGameList.setOnClickListener(this);
+        loutGameList.setBackgroundColor(ContextCompat.getColor(this, R.color.color_Blue_Dark));
+
+        ImageView imgNoti = (ImageView) findViewById(R.id.img_Notification);
+        imgNoti.setOnClickListener(this);
+
+        imgSearch = (ImageView) findViewById(R.id.img_Search);
+        imgSearch.setOnClickListener(this);
+        imgSearch.setVisibility(View.VISIBLE);
+
+        imgEdit = (ImageView) findViewById(R.id.img_Edit);
+        imgEdit.setOnClickListener(this);
+        imgEdit.setVisibility(View.GONE);
+
+        imgHistory = (ImageView) findViewById(R.id.img_Spinning_History);
+        imgHistory.setOnClickListener(this);
+        imgHistory.setVisibility(View.GONE);
+
+        imgGuide = (ImageView) findViewById(R.id.img_Spinning_Guide);
+        imgGuide.setOnClickListener(this);
+        imgGuide.setVisibility(View.GONE);
+
+        tvTitileView = (TextView) findViewById(R.id.tv_Titile_View);
+        tvNoti = (TextView) findViewById(R.id.tv_noti);
+    }
+
+    public static void updateNotiCount() {
+        mActivity.runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        if (tvNoti != null) {
+                                            if (AppBase.preferenceUtil(mContext).getValueInt(VtcString.KEY_NOTIFICATION) > 0) {
+                                                tvNoti.setVisibility(View.VISIBLE);
+                                                tvNoti.setText(String.valueOf(AppBase.preferenceUtil(mContext).getValueInt(VtcString.KEY_NOTIFICATION)));
+                                            } else tvNoti.setVisibility(View.GONE);
+                                        }
+                                    }
+                                }
+        );
+    }
+
+    /**
+     * Call get device token method
+     *
+     * @param mContext context of class
+     */
+    private static void intGetDeviceToken(Context mContext) {
+        // start get service get device id
+        Intent intentService = new Intent(mContext, RegistrationService.class);
+
+        if (!AppBase.checkPlayServices(mContext)) {
+            mContext.stopService(intentService);
+        }
+        mContext.startService(intentService);
+        // end get service get device Token
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == Const.REQUEST_CODE_LOGIN) {
+            AppBase.showLog("CallBack Login:" + SDKManager.userModel.getAccountName());
+            AppBase.showLog("CallBack Login:" + SDKManager.userModel.getAccountId());
+            AppBase.showLog("CallBack Login:" + SDKManager.userModel.getEmail());
+            AppBase.showLog("CallBack Login:" + SDKManager.userModel.getAccessToken());
+
+            VtcString.ACCESS_TOKEN = SDKManager.userModel.getAccessToken();
+            VtcString.USER_NAME = SDKManager.userModel.getAccountName();
+            VtcString.ACCOUNT_ID = SDKManager.userModel.getAccountId();
+            AppBase.showLog("img_Notification: " + VtcString.ACCOUNT_ID);
+            Map<String, String> mapUserInfo = new HashMap<>();
+            if (SDKManager.userModel.getAccountId() != null) {
+                mapUserInfo.put(ConstParam.PARAM_REQUEST_ACCESS_TOKEN, SDKManager.userModel.getAccessToken());
+                mapUserInfo.put(ConstParam.PARAM_REQUEST_USERNAME, SDKManager.userModel.getAccountName());
+                mapUserInfo.put(ConstParam.PARAM_REQUEST_OS_TYPE, String.valueOf(Const.OS_TYPE));
+                mapUserInfo.put(ConstParam.PARAM_REQUEST_DEVICE_TOKEN, VtcString.DEVICE_TOKEN);
+
+
+                vtcConnection.onExcuteProcess(TypeActionConnection.TYPE_ACTION_CREATE_ACCOUNT, RequestListener.API_CONNECTION_CREATE_ACCOUNT + VtcHttpConnection.urlEncodeUTF8(mapUserInfo), true);
+
+            }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.img_Spinning_Guide:
+                bundle.putString(ConstParam.BUNDLE_KEY_WEBVIEW_LINK, "https://vtcgame.vn/");
+                bundle.putString(ConstParam.BUNDLE_KEY_WEBVIEW_TITILE, getResources().getString(R.string.title_View_GUIDE));
+                AppBase.callNewFragment(Const.UI_GUIDE, bundle, true);
+                break;
+            case R.id.img_Spinning_History:
+                bundle.putString(ConstParam.BUNDLE_KEY_SPINNING_HISTORY, VtcString.SPINNING_HISTORY_ALL);
+                AppBase.callNewFragment(Const.UI_HISTORY, bundle, true);
+                break;
+            case R.id.btn_Login:
+                // Toast.makeText(this, "btnLogin", Toast.LENGTH_SHORT).show();
+                SDKManager.SignIn(this, Const.REQUEST_CODE_LOGIN);
+                dlEmergency.dismiss();
+                break;
+            case R.id.btn_Register:
+//                Toast.makeText(this, "btnRegister", Toast.LENGTH_SHORT).show();
+                SDKManager.Register(this, Const.REQUEST_CODE_LOGIN);
+                dlEmergency.dismiss();
+                break;
+            case R.id.img_Exit:
+                dlEmergency.dismiss();
+                break;
+            case R.id.img_Notification:
+                AppBase.showLog("img_Notification: " + VtcString.ACCOUNT_ID);
+                if (VtcString.ACCOUNT_ID == null) {
+                    dlEmergency.show();
+                } else {
+//                    AppBase.callNewFragment(Const.UI_NOTI, null, true);
+                    AppBase.callNewFragmentCallBack(Const.UI_NOTI, null, true, new Callback() {
+                        @Override
+                        public <T> void onHandlerCallBack(int key, T... t) {
+//                            tvNoti.setText(AppBase.preferenceUtil(mContext).getValueInt(VtcString.KEY_NOTIFICATION));
+                            updateNotiCount();
+                            AppBase.showLog("onHandlerCallBack");
+                        }
+                    });
+                }
+                break;
+            case R.id.lout_Action_Giftcode:
+                searchFlag = 1;
+                pagerAdapter.callViewPager(Const.INDEX_ACTION_GIFT_CODE);
+                imgSearch.setVisibility(View.VISIBLE);
+                imgEdit.setVisibility(View.GONE);
+                imgGuide.setVisibility(View.GONE);
+                imgHistory.setVisibility(View.GONE);
+                viewPager.setCurrentItem(Const.INDEX_ACTION_GIFT_CODE);
+                tvTitileView.setText(getResources().getString(R.string.title_View_GIFTCODE));
+                changeBGButton(loutGiftcode, Const.INDEX_ACTION_GIFT_CODE);
+                break;
+            case R.id.lout_Action_Profile:
+                if (VtcString.ACCOUNT_ID == null) {
+                    dlEmergency.show();
+                } else {
+                    pagerAdapter.callViewPager(Const.INDEX_ACTION_PROFILE);
+                    imgSearch.setVisibility(View.GONE);
+                    imgGuide.setVisibility(View.GONE);
+                    imgHistory.setVisibility(View.GONE);
+                    viewPager.setCurrentItem(Const.INDEX_ACTION_PROFILE);
+                    tvTitileView.setText(getResources().getString(R.string.title_View_PROFILE));
+                    changeBGButton(loutProfile, Const.INDEX_ACTION_PROFILE);
+                }
+                break;
+            case R.id.lout_Action_Spinning:
+                pagerAdapter.callViewPager(Const.INDEX_ACTION_SPINNING);
+                imgSearch.setVisibility(View.GONE);
+                imgEdit.setVisibility(View.GONE);
+                imgGuide.setVisibility(View.VISIBLE);
+                imgHistory.setVisibility(View.VISIBLE);
+                viewPager.setCurrentItem(Const.INDEX_ACTION_SPINNING);
+                tvTitileView.setText(getResources().getString(R.string.title_View_SPINNING));
+                changeBGButton(loutSpinning, Const.INDEX_ACTION_SPINNING);
+                break;
+            case R.id.lout_Action_News:
+                pagerAdapter.callViewPager(Const.INDEX_ACTION_NEWS);
+                imgSearch.setVisibility(View.GONE);
+                imgEdit.setVisibility(View.GONE);
+                imgGuide.setVisibility(View.GONE);
+                imgHistory.setVisibility(View.GONE);
+                viewPager.setCurrentItem(Const.INDEX_ACTION_NEWS);
+                tvTitileView.setText(getResources().getString(R.string.title_View_NEWS));
+                changeBGButton(loutNews, Const.INDEX_ACTION_NEWS);
+                break;
+            case R.id.lout_Action_Game:
+                searchFlag = 0;
+                pagerAdapter.callViewPager(Const.INDEX_ACTION_GAME_LIST);
+                imgSearch.setVisibility(View.VISIBLE);
+                imgEdit.setVisibility(View.GONE);
+                imgGuide.setVisibility(View.GONE);
+                imgHistory.setVisibility(View.GONE);
+                viewPager.setCurrentItem(Const.INDEX_ACTION_GAME_LIST);
+                tvTitileView.setText(getResources().getString(R.string.title_View_Game_List));
+                changeBGButton(loutGameList, Const.INDEX_ACTION_GAME_LIST);
+                break;
+            case R.id.img_Search:
+                bundle.putInt(ConstParam.BUNDLE_KEY_SEARCH, searchFlag);
+                AppBase.callNewFragment(Const.UI_SEARCH, bundle, true);
+                break;
+            case R.id.img_Edit:
+                AppBase.callNewFragment(Const.UI_EDIT_PROFILE, null, true);
+                AppBase.showLog("img_Edit");
+                break;
+            default:
+                return;
+        }
+    }
+
+    /**
+     * Call change color button method
+     *
+     * @param loutAction button that want to change color
+     * @param tag        tag of button
+     */
+    private void changeBGButton(LinearLayout loutAction, int tag) {
+        switch (loutFlag) {
+            case Const.INDEX_ACTION_NEWS:
+                loutNews.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent));
+                break;
+            case Const.INDEX_ACTION_GAME_LIST:
+                loutGameList.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent));
+                break;
+            case Const.INDEX_ACTION_GIFT_CODE:
+                loutGiftcode.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent));
+                break;
+            case Const.INDEX_ACTION_PROFILE:
+                loutProfile.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent));
+                break;
+            case Const.INDEX_ACTION_SPINNING:
+                loutSpinning.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent));
+                break;
+            default:
+                loutGameList.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent));
+        }
+        loutAction.setBackgroundColor(ContextCompat.getColor(this, R.color.color_Blue_Dark));
+        loutFlag = tag;
+    }
+
+    private void initDataNoti(String data) {
+        try {
+            JSONArray jsonArrayData = new JSONArray(data);
+            if (jsonArrayData.length() > 0) {
+                final List<NotiItem> lst = new ArrayList<>();
+                int count = 0;
+                for (int i = 0; i < jsonArrayData.length(); i++) {
+                    if (!jsonArrayData.optJSONObject(i).optBoolean(ConstParam.IS_OPEN)) {
+                        count++;
+                    }
+                }
+                AppBase.preferenceUtil(this).setValueInt(VtcString.KEY_NOTIFICATION, count);
+                if (AppBase.preferenceUtil(this).getValueInt(VtcString.KEY_NOTIFICATION) > 0) {
+                    tvNoti.setVisibility(View.VISIBLE);
+                    tvNoti.setText(String.valueOf(AppBase.preferenceUtil(this).getValueInt(VtcString.KEY_NOTIFICATION)));
+                } else {
+                    tvNoti.setVisibility(View.GONE);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initGetNotiCount() {
+        if (VtcString.ACCOUNT_ID != null) {
+            Map<String, String> mapInfoGame = new HashMap<>();
+            mapInfoGame.put(ConstParam.PARAM_REQUEST_ACCESS_TOKEN, VtcString.ACCESS_TOKEN);
+            mapInfoGame.put(ConstParam.PARAM_REQUEST_USERNAME, VtcString.USER_NAME);
+            mapInfoGame.put(ConstParam.PARAM_REQUEST_ACCOUNT_ID, VtcString.ACCOUNT_ID);
+
+            vtcConnection.onExcuteProcess(TypeActionConnection.TYPE_ACTION_GET_LIST_NOTI, RequestListener.API_CONNECTION_GET_LIST_NOTI + VtcHttpConnection.urlEncodeUTF8(mapInfoGame), false, "");
+        }
+    }
+
+
+    @Override
+    public void onPostExecuteError(TypeActionConnection keyType, String errorcode, String msg, String info, String reponseFullData) {
+        AppBase.showLog("onPostExecuteError");
+        switch (keyType) {
+            case TYPE_ACTION_CREATE_ACCOUNT:
+                VtcString.ACCOUNT_ID = null;
+                break;
+        }
+    }
+
+    @Override
+    public void onPostExecuteSuccess(TypeActionConnection keyType, String response, String reponseFullData) {
+        switch (keyType) {
+            case TYPE_ACTION_CREATE_ACCOUNT:
+                AppBase.showLog("TYPE_ACTION_CREATE_ACCOUNT00: " + response);
+                if (spinningFlag == 1) {
+                    pagerAdapter.callViewPager(Const.INDEX_ACTION_SPINNING);
+                    spinningFlag = 0;
+                }
+                initGetNotiCount();
+                break;
+            case TYPE_ACTION_GET_LIST_NOTI:
+                AppBase.showLog("onPostExecuteSuccess---TYPE_ACTION_GET_LIST_NOTI: " + response);
+                initDataNoti(response);
+                break;
+        }
+    }
+
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+        private FMGameList fmGameList;
+        private FMNews fmNews;
+        private FMGiftcode fmGiftcode;
+        private FMProfile fmProfile;
+        private FMSpinning fmSpinning;
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+
+            fmGameList = new FMGameList();
+            fmNews = new FMNews();
+            fmGiftcode = new FMGiftcode(new Callback() {
+                @Override
+                public <T> void onHandlerCallBack(int key, T... t) {
+                    dlEmergency.show();
+                }
+            });
+            fmProfile = new FMProfile(new Callback() {
+                @Override
+                public <T> void onHandlerCallBack(int key, T... t) {
+                    SDKManager.setOnSignOutCallBack(new SDKManager.onSignOutCallBack() {
+                        @Override
+                        public void onSignout() {
+                            AppBase.showLog("SIGNOUT");
+                        }
+                    });
+                    SDKManager.Signout();
+
+                    VtcString.ACCESS_TOKEN = null;
+                    VtcString.USER_NAME = null;
+                    VtcString.ACCOUNT_ID = null;
+                    tvNoti.setVisibility(View.GONE);
+
+                    pagerAdapter.callViewPager(Const.INDEX_ACTION_NEWS);
+                    imgSearch.setVisibility(View.GONE);
+                    imgEdit.setVisibility(View.GONE);
+                    viewPager.setCurrentItem(Const.INDEX_ACTION_NEWS);
+                    tvTitileView.setText(getResources().getString(R.string.title_View_NEWS));
+                    changeBGButton(loutNews, Const.INDEX_ACTION_NEWS);
+                }
+            });
+            fmSpinning = new FMSpinning(new Callback() {
+                @Override
+                public <T> void onHandlerCallBack(int key, T... t) {
+                    dlEmergency.show();
+                    spinningFlag = 1;
+                }
+            });
+        }
+
+        public void callViewPager(int index) {
+            switch (index) {
+                case Const.INDEX_ACTION_GAME_LIST:
+                    fmGameList.callBackMain();
+                    break;
+                case Const.INDEX_ACTION_GIFT_CODE:
+                    fmGiftcode.callBackMain();
+                    break;
+                case Const.INDEX_ACTION_SPINNING:
+                    fmSpinning.callBackMain();
+                    break;
+                case Const.INDEX_ACTION_NEWS:
+                    fmNews.callBackMain();
+                    break;
+                case Const.INDEX_ACTION_PROFILE:
+                    fmProfile.callBackMain();
+                    break;
+
+            }
+
+        }
+
+        @Override
+        public Fragment getItem(int pos) {
+            switch (pos) {
+                case Const.INDEX_ACTION_NEWS:
+                    return fmNews;
+                case Const.INDEX_ACTION_GAME_LIST:
+                    return fmGameList;
+                case Const.INDEX_ACTION_GIFT_CODE:
+                    return fmGiftcode;
+                case Const.INDEX_ACTION_PROFILE:
+                    return fmProfile;
+                case Const.INDEX_ACTION_SPINNING:
+                    return fmSpinning;
+                default:
+                    return fmGameList;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return Const.COUNT_VIEW;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+    }
+// Xử lý avatar
+    /*private void initSelectImage() {
+        DlMedia dlMedia = new DlMedia(this);
+        dlMedia.setOnClickDialogPhoto(new DlMedia.IActionDialogPhoto() {
+            @Override
+            public void onClickGetPictureLibrary() {
+                galleryIntent();
+            }
+
+            @Override
+            public void onClickGetCamera() {
+                cameraIntent();
+            }
+        });
+        dlMedia.show();
+    }
+
+    private void cameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    private void galleryIntent() {
+        Intent intent = new Intent();
+        intent.setType("image*//*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);//
+        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_FILE)
+                onSelectFromGalleryResult(data);
+            else if (requestCode == REQUEST_CAMERA)
+                onCaptureImageResult(data);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void onSelectFromGalleryResult(Intent data) {
+        Bitmap bm = null;
+        if (data != null) {
+            try {
+                bm = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //imgAvatar.setImageBitmap(bm);
+        Uri uriImage = bitmapToUriConverter(bm);
+        Glide.with(this).load(uriImage).asBitmap().centerCrop().into(new BitmapImageViewTarget(imgAvatar) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
+                circularBitmapDrawable.setCircular(true);
+                imgAvatar.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+    }
+
+    public Uri bitmapToUriConverter(Bitmap mBitmap) {
+        Uri uri = null;
+        try {
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            // Calculate inSampleSize
+            ///options.inSampleSize = calculateInSampleSize(options, 100, 100);
+
+            // Decode bitmap with inSampleSize set
+            options.inJustDecodeBounds = false;
+            Bitmap newBitmap = Bitmap.createScaledBitmap(mBitmap, 200, 200,
+                    true);
+            File file = new File(this.getFilesDir(), "Image"
+                    + new Random().nextInt() + ".jpeg");
+            FileOutputStream out = this.openFileOutput(file.getName(),
+                    Context.MODE_WORLD_READABLE);
+            newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            //get absolute path
+            String realPath = file.getAbsolutePath();
+            File f = new File(realPath);
+            uri = Uri.fromFile(f);
+
+        } catch (Exception e) {
+            Log.e("Your Error Message", e.getMessage());
+        }
+        return uri;
+    }
+
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File destination = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + ".jpg");
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        imgAvatar.setImageBitmap(thumbnail);
+        Uri uriImage = bitmapToUriConverter(thumbnail);
+        Glide.with(this).load(uriImage).asBitmap().centerCrop().into(new BitmapImageViewTarget(imgAvatar) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
+                circularBitmapDrawable.setCircular(true);
+                imgAvatar.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+    }*/
+
+}

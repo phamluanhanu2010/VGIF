@@ -1,0 +1,61 @@
+package com.strategy.intecom.vtc.vgift.view;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.model.BanerItem;
+import com.strategy.intecom.vtc.vgift.utils.Const;
+import com.strategy.intecom.vtc.vgift.utils.ConstParam;
+
+/**
+ * Created by Mr. Ha on 6/1/16.
+ */
+@SuppressLint("ValidFragment")
+public final class FMSlideBanner extends Fragment {
+    private BanerItem itemBanner;
+    private Context context;
+
+    public FMSlideBanner(Context context, BanerItem item) {
+        this.itemBanner = item;
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View viewRoot = inflater.inflate(R.layout.tmp_sliding_image_item, container, false);
+
+        ImageView imageBanner = (ImageView) viewRoot.findViewById(R.id.img_Baner);
+        AppBase.setImageWithUrl("http://i1266.photobucket.com/albums/jj523/luanpv/Banner_zpsrsmspkfj.png", imageBanner);
+
+        imageBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppBase.showLog("-----------Banner ID:" + itemBanner.getId());
+                AppBase.showLog("-----------Banner URL:" + itemBanner.getImgUrlBaner());
+
+                Bundle bundle = new Bundle();
+                bundle.putString(ConstParam.BUNDLE_KEY_GAME_DETAIL, itemBanner.getId());
+                AppBase.callNewFragment(Const.UI_GAME_INFO, bundle, true);
+            }
+        });
+
+
+        return viewRoot;
+    }
+}

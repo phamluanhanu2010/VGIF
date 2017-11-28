@@ -1,0 +1,150 @@
+package com.strategy.intecom.vtc.vgift.adapter;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.util.Util;
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.model.GameTypeModel;
+import com.strategy.intecom.vtc.vgift.utils.Const;
+import com.strategy.intecom.vtc.vgift.utils.ConstParam;
+
+import java.util.List;
+
+/**
+ * Created by ThuyChi on 6/22/2016.
+ */
+public class AdtGameList extends RecyclerView.Adapter<AdtGameList.MyViewHolder> {
+    private List<GameTypeModel> gamesList;
+    private onClickListener onClickListener;
+    public LinearLayout loutContentGame;
+    public String typeGameTitile;
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView gameName;
+        private RelativeLayout loutContentGame;
+        private ImageView imgGame;
+        private ImageView imgCorner;
+        private TextView tvStatus;
+
+
+        public MyViewHolder(View view) {
+            super(view);
+
+            loutContentGame = (RelativeLayout) view.findViewById(R.id.lout_Game_content);
+            gameName = (TextView) view.findViewById(R.id.tv_Game_Name);
+            tvStatus = (TextView) view.findViewById(R.id.tv_Status);
+            imgGame = (ImageView) view.findViewById(R.id.img_Game);
+            imgCorner = (ImageView) view.findViewById(R.id.img_Corner);
+
+        }
+    }
+
+
+    public AdtGameList(List<GameTypeModel> moviesList, String typeTitile) {
+        this.gamesList = moviesList;
+        this.typeGameTitile = typeTitile;
+    }
+
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.tmp_item_game, parent, false);
+
+        return new MyViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        final GameTypeModel gameItem = gamesList.get(position);
+        holder.gameName.setText(gameItem.getGameName());
+        if (gameItem.getStatus() == Const.GAME_STATUS_NEW) {
+            holder.imgCorner.setVisibility(View.VISIBLE);
+            holder.tvStatus.setVisibility(View.VISIBLE);
+            holder.tvStatus.setText("new");
+        } else if (gameItem.getStatus() == Const.GAME_STATUS_HOT) {
+            holder.imgCorner.setVisibility(View.VISIBLE);
+            holder.tvStatus.setVisibility(View.VISIBLE);
+            holder.tvStatus.setText("hot");
+        } else if (gameItem.getStatus() == Const.GAME_STATUS_NORMAL) {
+            holder.imgCorner.setVisibility(View.GONE);
+            holder.tvStatus.setVisibility(View.GONE);
+        } else {
+            holder.imgCorner.setVisibility(View.GONE);
+            holder.tvStatus.setVisibility(View.GONE);
+        }
+
+//        ImageLoadTask loadAsync = new ImageLoadTask(AppBase.getActivity(), holder.imgGame);
+//        loadAsync.executeOnExecutor(MediaAsy     nc.THREAD_POOL_EXECUTOR, "https://postimg.org/image/z0qnrjv3h/");
+
+//        Glide.with(AppBase.getActivity()).load("http://www.j           ulianstanczak.net/images/collections/32-celebrating-red-1991-70x70.jpg").into(holder.imgGame);
+
+//        Glide.with(AppBase.getActivity()).load("http://www.julianstanczak.net/images/collections/32-celebrating-red-1991-70x70.jpg").asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.imgGame) {
+//            @Override
+//            protected void setResource(Bitmap resource) {
+//                RoundedBitmapDrawable circularBitmapDrawable =
+//                        RoundedBitmapDrawableFactory.create(AppBase.getActivity().getResources(), resource);
+////                circularBitmapDrawable.setCircular(true);
+//                circularBitmapDrawable.setCornerRadius(Const.IMAGE_CORNER_RADIUS);
+//                holder.imgGame.setImageDrawable(circularBitmapDrawable);
+//            }
+//        });
+
+//        AppBase.setImageWithCorner("http://www.julianstanczak.net/images/collections/32-celebrating-red-1991-70x70.jpg", holder.imgGame);
+        AppBase.setImageWithCorner(gameItem.getPictureGame(), holder.imgGame);
+
+
+        holder.loutContentGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppBase.showLog("===========================:----" + typeGameTitile);
+                AppBase.showLog("Game Name:----" + gameItem.getGameName());
+                AppBase.showLog("Game Type:----" + gameItem.getTypeGameTitile());
+                AppBase.showLog("Game ID:----" + gameItem.getId());
+                AppBase.showLog("Game Status:----" + gameItem.getStatus());
+
+                Bundle bundleData = new Bundle();
+                bundleData.putString(ConstParam.BUNDLE_KEY_GAME_DETAIL, gameItem.getId());
+
+                AppBase.callNewFragment(Const.UI_GAME_INFO, bundleData, true);
+
+                onClickListener.onClickItem(position);
+            }
+        });
+
+//        holder.title.setText(movie.getTitle());
+//        holder.genre.setText(movie.getGenre());
+//        holder.year.setText(movie.getYear());
+    }
+
+    @Override
+    public int getItemCount() {
+        return gamesList.size();
+    }
+
+    public interface onClickListener {
+        void onClickItem(int position);
+    }
+
+    public AdtGameList.onClickListener getOnClickListener() {
+        return onClickListener;
+    }
+
+    public void setOnClickListener(AdtGameList.onClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+}

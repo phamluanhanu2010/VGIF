@@ -1,0 +1,141 @@
+package com.strategy.intecom.vtc.vgift.adapter;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.daimajia.swipe.SwipeLayout;
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.model.NotiItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by ThuyChi on 6/22/2016.
+ */
+public class AdtNoti extends ArrayAdapter<NotiItem> {
+    Context mContext;
+    ArrayList<NotiItem> mLstEmailItem = new ArrayList<NotiItem>();
+    private onClickItem onClickItem;
+    private SwipeLayout lastSwipelayout;
+
+    public AdtNoti(Context context, int resource, List<NotiItem> objects) {
+        super(context, resource, objects);
+        this.mContext = context;
+        this.mLstEmailItem = new ArrayList<NotiItem>(objects);
+    }
+
+    @Override
+    public int getCount() {
+        if (mLstEmailItem == null) {
+            return 0;
+        }
+        return mLstEmailItem.size();
+    }
+
+    @Override
+    public NotiItem getItem(int position) {
+        if (mLstEmailItem == null) {
+            return null;
+        }
+        return mLstEmailItem.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(final int position, View convertView, ViewGroup parent) {
+
+        return initView(position, convertView, parent);
+    }
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+
+        return initView(position, convertView, parent);
+    }
+
+    public View initView(final int position, View convertView, ViewGroup parent) {
+        View rowView = convertView;
+        final ViewHolder viewHolder;
+        if (rowView == null) {
+            LayoutInflater inflate = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            rowView = inflate.inflate(R.layout.tmp_item_noti, null);
+
+            viewHolder = new ViewHolder();
+            viewHolder.loutItem = (LinearLayout) rowView.findViewById(R.id.lout_Content_Email);
+            viewHolder.loutDelete = (RelativeLayout) rowView.findViewById(R.id.right_Wrapper);
+            viewHolder.tvContent = (TextView) rowView.findViewById(R.id.tv_Content);
+            viewHolder.swipeLayout = (SwipeLayout) rowView.findViewById(R.id.swipeLayoutSimple);
+            viewHolder.imgBanerNoti = (ImageView) rowView.findViewById(R.id.img_Baner_Noti);
+
+            viewHolder.imgBanerNoti.setImageDrawable(getContext().getResources().getDrawable(R.drawable.avatar));
+
+            rowView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        viewHolder.loutDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppBase.showLog("Click OK button:" + position);
+                getOnClickItem().onClickItem(1, position);
+                mLstEmailItem.remove(position);
+                notifyDataSetChanged();
+                viewHolder.swipeLayout.close();
+            }
+        });
+
+        viewHolder.loutItem.setOnClickListener(new View.OnClickListener() {
+            int pos = position;
+
+            @Override
+            public void onClick(View v) {
+                AppBase.showLog("getView:" + pos);
+                getOnClickItem().onClickItem(0, position);
+                mLstEmailItem.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+        AppBase.showLog("==========================:" + position);
+        final NotiItem item = getItem(position);
+
+        viewHolder.tvContent.setText("Notification-----" + item.getContent());
+
+        return rowView;
+
+    }
+
+    static class ViewHolder {
+        LinearLayout loutItem;
+        RelativeLayout loutDelete;
+        TextView tvContent;
+        SwipeLayout swipeLayout;
+        ImageView imgBanerNoti;
+    }
+
+    public interface onClickItem {
+        void onClickItem(int type, int position);
+    }
+
+    public AdtNoti.onClickItem getOnClickItem() {
+        return onClickItem;
+    }
+
+    public void setOnClickItem(AdtNoti.onClickItem onClickItem) {
+        this.onClickItem = onClickItem;
+    }
+}

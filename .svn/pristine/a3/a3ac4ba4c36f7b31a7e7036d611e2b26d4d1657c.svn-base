@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/lout_Bar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_Blue_Light">
+
+        <ImageView
+            android:id="@+id/img_Back"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/size_Margin_Space"
+            android:src="@mipmap/ic_back" />
+
+        <TextView
+            android:id="@+id/tv_Titile_View"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_centerInParent="true"
+            android:text="@string/title_View_EDIT_PROFILE" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_account"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_Avatar"
+            android:layout_width="@dimen/size_Avatar_Large"
+            android:layout_height="@dimen/size_Avatar_Large"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/size_Margin_Space"
+            android:layout_marginTop="@dimen/size_Margin_Space"
+            android:background="@drawable/avatar" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/size_Profile_Margin"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_Footer_h"
+                android:layout_height="@dimen/size_Icon_Footer_h"
+                android:src="@drawable/ic_camera" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:text="@string/title_Profile_Edit_Avatar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Input_Text_h"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/size_Margin_Space">
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:layout_marginRight="@dimen/size_Margin_Space"
+                android:background="@drawable/ic_name" />
+
+            <TextView
+                android:id="@+id/tv_Name"
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:background="@drawable/cus_border_one_side_bottom"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Input_Text_h"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/size_Margin_Space">
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:layout_marginRight="@dimen/size_Margin_Space"
+                android:background="@drawable/ic_email" />
+
+            <TextView
+                android:id="@+id/tv_Email"
+                style="@style/CusTextViewContentTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:background="@drawable/cus_border_one_side_bottom"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/lout_Change_Password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_Input_Text_h"
+            android:background="@android:color/white"
+            android:paddingLeft="@dimen/size_Margin_Space">
+
+            <ImageView
+                android:id="@+id/img_pass"
+                android:layout_width="@dimen/size_Icon_In_App"
+                android:layout_height="@dimen/size_Icon_In_App"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/size_Margin_Space"
+                android:background="@drawable/ic_password" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/size_Margin_Space"
+                android:layout_toRightOf="@+id/img_pass"
+                android:text="@string/title_Profile_Password" />
+
+            <ImageView
+                android:layout_width="@dimen/size_Icon_Footer_h"
+                android:layout_height="@dimen/size_Icon_Footer_h"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/size_Margin_Space"
+                android:background="@mipmap/ic_arrow_right"
+                android:tint="@android:color/black" />
+        </RelativeLayout>
+
+        <EditText
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/size_Margin_Space"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_Current_Password"
+            android:lines="1" />
+    </LinearLayout>
+</LinearLayout>

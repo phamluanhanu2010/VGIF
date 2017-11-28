@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:background="@color/color_Blue_Light">
+
+    <RelativeLayout
+        android:focusable="true"
+        android:id="@+id/lout_Bar_Container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/img_Notification"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="@dimen/size_Margin_Space"
+            android:src="@mipmap/ic_notification" />
+        <TextView
+            android:id="@+id/tv_noti"
+            android:gravity="center"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="@dimen/size_Icon_Noti"
+            android:layout_height="@dimen/size_Icon_Noti"
+            android:textColor="@android:color/white"
+            android:background="@drawable/circle_shape_noti"
+            android:visibility="gone"
+            android:layout_below="@+id/img_Edit"
+            android:layout_alignRight="@+id/img_Notification"
+            android:layout_alignEnd="@+id/img_Notification"
+            android:layout_marginRight="10dp"
+             />
+        <TextView
+            android:id="@+id/tv_Titile_View"
+            style="@style/CusTextViewTitileViewTheme"
+            android:layout_centerInParent="true"
+
+
+            android:text="@string/title_View_Game_List"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/actionBarSize" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img_Search"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/size_Margin_Space"
+            android:src="@mipmap/ic_search" />
+        <ImageView
+            android:id="@+id/img_Edit"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/size_Margin_Space"
+            android:visibility="gone"
+            android:src="@mipmap/ic_edit" />
+        <ImageView
+            android:id="@+id/img_Spinning_Guide"
+            android:layout_width="@dimen/size_Icon_Footer_h"
+            android:layout_height="@dimen/size_Icon_Footer_h"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="visible"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:src="@drawable/ic_tutorial" />
+        <ImageView
+            android:id="@+id/img_Spinning_History"
+            android:layout_width="@dimen/size_Icon_Footer_h"
+            android:layout_height="@dimen/size_Icon_Footer_h"
+            android:layout_toLeftOf="@+id/img_Spinning_Guide"
+            android:visibility="visible"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_history_spin" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

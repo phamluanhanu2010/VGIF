@@ -1,0 +1,147 @@
+package com.strategy.intecom.vtc.vgift.view;
+
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.app.DatePickerDialog.OnDateSetListener;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.adapter.AdtHistory;
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.model.HistoryItem;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class FMHistory extends Fragment implements View.OnClickListener {
+    private View viewRoot;
+    private Callback callback;
+    private DatePickerDialog fromDatePickerDialog;
+    private DatePickerDialog toDatePickerDialog;
+    private TextView tvFromDate;
+    private TextView tvToDate;
+    private ListView listViewHistory;
+    private AdtHistory mAdapter;
+
+    public FMHistory() {
+
+    }
+
+    @SuppressLint("ValidFragment")
+    public FMHistory(Callback callback) {
+        this.callback = callback;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        viewRoot = inflater.inflate(R.layout.ui_history, container, false);
+        return viewRoot;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        initController(view);
+    }
+
+    private void initController(View view) {
+
+        listViewHistory = (ListView) view.findViewById(R.id.lst_History);
+
+        ImageView imgFromDate = (ImageView) view.findViewById(R.id.img_From_Date);
+        imgFromDate.setOnClickListener(this);
+
+        ImageView imgToDate = (ImageView) view.findViewById(R.id.img_To_Date);
+        imgToDate.setOnClickListener(this);
+
+        tvFromDate = (TextView) view.findViewById(R.id.tv_From_Date);
+        tvToDate = (TextView) view.findViewById(R.id.tv_To_Date);
+
+        Calendar calendar = Calendar.getInstance();
+        fromDatePickerDialog = new DatePickerDialog(getContext(), new OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                AppBase.showLog("year:" + year + "monthOfYear" + monthOfYear + "dayOfMonth" + dayOfMonth);
+                tvFromDate.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+            }
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
+
+        toDatePickerDialog = new DatePickerDialog(getContext(), new OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                AppBase.showLog("year:" + year + "monthOfYear" + monthOfYear + "dayOfMonth" + dayOfMonth);
+                tvToDate.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+            }
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE));
+
+        String jsonString = "{'list' : [{'date': '21/9/2016','game': 'thien long','code': 'dsjkfhds83'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'},{'date': '12/7/2016','game': 'audition','code': 'fds43ds'}]}";
+
+
+        try {
+            JSONObject json = new JSONObject(jsonString);
+            JSONArray jsonArray = json.getJSONArray("list");
+            AppBase.showLog("json" + json.toString());
+            initData(jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initData(JSONArray jsonArrayPackage) {
+        List<HistoryItem> lst = new ArrayList<>();
+        for (int i = 0; i < jsonArrayPackage.length(); i++) {
+            HistoryItem item = new HistoryItem();
+            item.setDate(jsonArrayPackage.optJSONObject(i).optString("date"));
+            item.setGame(jsonArrayPackage.optJSONObject(i).optString("game"));
+            item.setCode(jsonArrayPackage.optJSONObject(i).optString("code"));
+            AppBase.showLog("json" + jsonArrayPackage.optJSONObject(i).optString("date"));
+            lst.add(item);
+        }
+        mAdapter = new AdtHistory(getContext(), R.layout.tmp_item_history, lst);
+        listViewHistory.setAdapter(mAdapter);
+        listViewHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AppBase.showLog(String.valueOf(position));
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.img_From_Date:
+                fromDatePickerDialog.show();
+                break;
+
+            case R.id.img_To_Date:
+                toDatePickerDialog.show();
+                break;
+
+            default:
+                break;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+package com.strategy.intecom.vtc.vgift.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
+import java.io.Serializable;
+
+/**
+ * Created by ThuyChi on 9/28/2016.
+ */
+public class GameListItem implements Serializable {
+    private String content;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+}

@@ -1,0 +1,103 @@
+package com.strategy.intecom.vtc.vgift.model;
+
+import android.os.Parcelable;
+
+import com.strategy.intecom.vtc.vgift.common.AppBase;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * Created by ThuyChi on 10/3/2016.
+ */
+public class GameTypeModel {
+    public List<String> arrLstGameType = new ArrayList<String>();
+    public HashMap<String, List<GameTypeModel>> hmGameType = new HashMap<String, List<GameTypeModel>>();
+
+    public List<String> getArrLstGameType() {
+        return arrLstGameType;
+    }
+
+    public void setArrLstGameType(ArrayList<String> arrLstGameType) {
+        this.arrLstGameType = arrLstGameType;
+    }
+
+    public HashMap<String, List<GameTypeModel>> getHmGameType() {
+        return hmGameType;
+    }
+
+    public void setHmGameType(HashMap<String, List<GameTypeModel>> hmGameType) {
+        this.hmGameType = hmGameType;
+    }
+
+    public String titile;
+    public String content;
+    public String typeGameTitile;
+
+    public String getTypeGameTitile() {
+        return typeGameTitile;
+    }
+
+    public void setTypeGameTitile(String typeGameTitile) {
+        this.typeGameTitile = typeGameTitile;
+    }
+
+    public String getTitile() {
+        return titile;
+    }
+
+    public void setTitile(String titile) {
+        this.titile = titile;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public static GameTypeModel getParseGameData(JSONObject data) {
+        GameTypeModel gameTypeModel = new GameTypeModel();
+
+        if (data != null) {
+            JSONArray jsonArray = data.optJSONArray("typelist");
+            if (jsonArray != null) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.optJSONObject(i);
+
+                    String typeTitle = jsonObject.optString("typetitile");
+                    JSONArray jsonArray1 = jsonObject.optJSONArray("game");
+
+                    List<GameTypeModel> modelList = new ArrayList<>();
+                    for (int j = 0; j < jsonArray1.length(); j++) {
+
+                        JSONObject jsonObject1 = jsonArray1.optJSONObject(j);
+
+                        GameTypeModel gameTypeModel1 = new GameTypeModel();
+
+                        String gameTitile = jsonObject1.optString("gametitile");
+                        String gameContent = jsonObject1.optString("gamecontent");
+                        gameTypeModel1.setTitile(gameTitile);
+                        gameTypeModel1.setContent(gameContent);
+                        gameTypeModel1.setTypeGameTitile(typeTitle);
+
+                        modelList.add(gameTypeModel1);
+                    }
+
+                    gameTypeModel.hmGameType.put(typeTitle, modelList);
+                    gameTypeModel.arrLstGameType.add(typeTitle);
+                }
+            }
+        }
+        return gameTypeModel;
+    }
+
+
+}
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sex_type">
+        <item>Giới tính</item>
+        <item>Nam</item>
+        <item>Nữ</item>
+    </string-array>
+
+    <string-array name="get_otp_type">
+        <item>OTP SMS</item>
+        <item>OTP APP</item>
+    </string-array>
+
+    <string-array name="freeze_vcoin">
+        <item>Đóng băng Vcoin</item>
+        <item>Mở đóng băng Vcoin</item>
+    </string-array>
+
+</resources>

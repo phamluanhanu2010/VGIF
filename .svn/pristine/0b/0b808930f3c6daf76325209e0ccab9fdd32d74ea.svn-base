@@ -1,0 +1,128 @@
+package com.strategy.intecom.vtc.vgift.view;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+
+import com.strategy.intecom.vtc.vgift.R;
+import com.strategy.intecom.vtc.vgift.adapter.AdtGameList;
+import com.strategy.intecom.vtc.vgift.adapter.AdtGameType;
+import com.strategy.intecom.vtc.vgift.adapter.AdtSlidesBaner;
+import com.strategy.intecom.vtc.vgift.interfaces.Callback;
+import com.strategy.intecom.vtc.vgift.model.BanerItem;
+import com.strategy.intecom.vtc.vgift.model.GameListItem;
+import com.strategy.intecom.vtc.vgift.model.GameTypeItem;
+import com.strategy.intecom.vtc.vgift.model.GameTypeModel;
+import com.viewpagerindicator.CirclePageIndicator;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+/**
+ * Created by ThuyChi on 9/16/2016.
+ */
+public class FMGameList extends Fragment implements View.OnClickListener {
+    private View viewRoot;
+    private Callback callback;
+    private AdtGameList mAdapter;
+    private AdtSlidesBaner banerAdapter;
+    private List<GameListItem> gameList = new ArrayList<>();
+    private List<GameTypeItem> gameTypeList = new ArrayList<>();
+    private AdtGameType gameTypeAdapter;
+    private ViewPager pagerBaner;
+    private RelativeLayout loutContainerBaner;
+    private CirclePageIndicator indicatorBaner;
+
+    public FMGameList() {
+
+    }
+
+    @SuppressLint("ValidFragment")
+    public FMGameList(Callback callback) {
+        this.callback = callback;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        viewRoot = inflater.inflate(R.layout.ui_game_list, container, false);
+        return viewRoot;
+
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        initController(view);
+    }
+
+    private void initController(View view) {
+
+        String string = "{'typelist' : [{'typetitile': 'game hot','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game4','gamecontent': 'noi dung 3'},{'gametitile':'game5','gamecontent': 'noi dung 3'},{'gametitile':'game6','gamecontent': 'noi dung 3'},{'gametitile':'game7','gamecontent': 'noi dung 3'},{'gametitile':'game8','gamecontent': 'noi dung 3'},{'gametitile':'game9','gamecontent': 'noi dung 3'},{'gametitile':'game10','gamecontent': 'noi dung 3'},{'gametitile':'game11','gamecontent': 'noi dung 3'},{'gametitile':'game12','gamecontent': 'noi dung 3'},{'gametitile':'game13','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 1','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game14','gamecontent': 'noi dung 3'},{'gametitile':'game15','gamecontent': 'noi dung 3'},{'gametitile':'gam16','gamecontent': 'noi dung 3'},{'gametitile':'game17','gamecontent': 'noi dung 3'},{'gametitile':'game18','gamecontent': 'noi dung 3'},{'gametitile':'game19','gamecontent': 'noi dung 3'},{'gametitile':'game20','gamecontent': 'noi dung 3'},{'gametitile':'game21','gamecontent': 'noi dung 3'},{'gametitile':'game22','gamecontent': 'noi dung 3'},{'gametitile':'game23','gamecontent': 'noi dung 3'},{'gametitile':'game24','gamecontent': 'noi dung 3'},{'gametitile':'game25','gamecontent': 'noi dung 3'},{'gametitile':'game26','gamecontent': 'noi dung 3'},{'gametitile':'game27','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 2','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game1','gamecontent': 'noi dung 3'},{'gametitile':'game2','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game4','gamecontent': 'noi dung 3'},{'gametitile':'game5','gamecontent': 'noi dung 3'},{'gametitile':'game6','gamecontent': 'noi dung 3'},{'gametitile':'game7','gamecontent': 'noi dung 3'},{'gametitile':'game8','gamecontent': 'noi dung 3'},{'gametitile':'game9','gamecontent': 'noi dung 3'},{'gametitile':'game10','gamecontent': 'noi dung 3'},{'gametitile':'game11','gamecontent': 'noi dung 3'},{'gametitile':'game12','gamecontent': 'noi dung 3'},{'gametitile':'game13','gamecontent': 'noi dung 3'},{'gametitile':'game14','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 3','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 4','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 5','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game01','gamecontent': 'noi dung 3'},{'gametitile':'game02','gamecontent': 'noi dung 3'},{'gametitile':'game03','gamecontent': 'noi dung 3'},{'gametitile':'game04','gamecontent': 'noi dung 3'},{'gametitile':'game05','gamecontent': 'noi dung 3'},{'gametitile':'game06','gamecontent': 'noi dung 3'},{'gametitile':'game07','gamecontent': 'noi dung 3'},{'gametitile':'game08','gamecontent': 'noi dung 3'},{'gametitile':'game09','gamecontent': 'noi dung 3'},{'gametitile':'game010','gamecontent': 'noi dung 3'},{'gametitile':'game011','gamecontent': 'noi dung 3'},{'gametitile':'game012','gamecontent': 'noi dung 3'},{'gametitile':'game013','gamecontent': 'noi dung 3'},{'gametitile':'game014','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 6','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 7','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 8','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game4','gamecontent': 'noi dung 4'},{'gametitile':'game5','gamecontent': 'noi dung 5'},{'gametitile':'game6','gamecontent': 'noi dung 6'},{'gametitile':'game7','gamecontent': 'noi dung 3'},{'gametitile':'game8','gamecontent': 'noi dung 3'},{'gametitile':'game9','gamecontent': 'noi dung 3'},{'gametitile':'game10','gamecontent': 'noi dung 3'},{'gametitile':'game11','gamecontent': 'noi dung 3'},{'gametitile':'game12','gamecontent': 'noi dung 3'},{'gametitile':'game14','gamecontent': 'noi dung 3'},{'gametitile':'game15','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 9','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 10','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 11','game': [{'gametitile':'game1','gamecontent': 'noi dung 1'},{'gametitile':'game2','gamecontent': 'noi dung 2'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'},{'gametitile':'game3','gamecontent': 'noi dung 3'}]},{'typetitile': 'game hot 12','game': [{'gametitile':'game4','gamecontent': 'noi dung 4'},{'gametitile':'game5','gamecontent': 'noi dung 5'},{'gametitile':'game6','gamecontent': 'noi dung 6'}]}]}";
+
+        ListView listViewGameType = (ListView) view.findViewById(R.id.lstView_GameType);
+
+        try {
+            GameTypeModel gameTypeModel = GameTypeModel.getParseGameData(new JSONObject(string));
+
+            gameTypeAdapter = new AdtGameType(getContext(), R.layout.tmp_item_game_type, gameTypeModel);
+            listViewGameType.setAdapter(gameTypeAdapter);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (10 > 0) {
+            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            ViewGroup header = (ViewGroup) inflater.inflate(R.layout.ui_header_game_list, listViewGameType, false);
+            listViewGameType.addHeaderView(header, null, false);
+
+            pagerBaner = (ViewPager) header.findViewById(R.id.pager_Baner);
+            loutContainerBaner = (RelativeLayout) header.findViewById(R.id.lout_Container_Baner);
+            indicatorBaner = (CirclePageIndicator) header.findViewById(R.id.indicator_Baner);
+
+            loutContainerBaner.setVisibility(LinearLayout.VISIBLE);
+
+            final List<BanerItem> lstBaner = new ArrayList<>();
+
+            for (int i = 0; i < 5; i++) {
+                BanerItem itemBaner = new BanerItem();
+                itemBaner.setImgUrlBaner(String.valueOf(i));
+                lstBaner.add(itemBaner);
+            }
+
+            banerAdapter = new AdtSlidesBaner(this.getChildFragmentManager(), lstBaner, getActivity());
+            pagerBaner.setAdapter(banerAdapter);
+
+            indicatorBaner.setViewPager(pagerBaner);
+
+            ((CirclePageIndicator) indicatorBaner).setSnap(true);
+        } else {
+            // không có dữ liệu banner
+           // loutContainerBaner.setVisibility(LinearLayout.GONE);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            default:
+                break;
+        }
+    }
+}

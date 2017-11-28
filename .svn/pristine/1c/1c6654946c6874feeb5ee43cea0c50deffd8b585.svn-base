@@ -1,0 +1,160 @@
+package vtc.game.app.vcoin.vtcpay.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import vtc.game.app.vcoin.vtcpay.utils.ConstParam;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * Created by ThuyChi on 10/3/2016.
+ */
+public class GameTypeModel implements Parcelable {
+    public List<String> arrLstGameType = new ArrayList<String>();
+    public HashMap<String, List<GameTypeModel>> hmGameType = new HashMap<String, List<GameTypeModel>>();
+
+    public List<String> getArrLstGameType() {
+        return arrLstGameType;
+    }
+
+    public void setArrLstGameType(ArrayList<String> arrLstGameType) {
+        this.arrLstGameType = arrLstGameType;
+    }
+
+    public String id;
+    public int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public HashMap<String, List<GameTypeModel>> getHmGameType() {
+        return hmGameType;
+    }
+
+    public void setHmGameType(HashMap<String, List<GameTypeModel>> hmGameType) {
+        this.hmGameType = hmGameType;
+    }
+
+    public String gameName;
+
+    public String getPictureGame() {
+        return pictureGame;
+    }
+
+    public void setPictureGame(String pictureGame) {
+        this.pictureGame = pictureGame;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+    public String pictureGame;
+    public String typeGameTitile;
+
+    public String getTypeGameTitile() {
+        return typeGameTitile;
+    }
+
+    public void setTypeGameTitile(String typeGameTitile) {
+        this.typeGameTitile = typeGameTitile;
+    }
+
+    private String full_name;
+    private int privacy;
+
+    public GameTypeModel(Parcel in) {
+        this.full_name = in.readString();
+        this.privacy = in.readInt();
+    }
+
+    public GameTypeModel() {
+
+    }
+
+    public static GameTypeModel getParseGameData(JSONArray data) {
+        GameTypeModel gameTypeModel = new GameTypeModel();
+
+        if (data != null) {
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jsonObject = data.optJSONObject(i);
+
+                String typeGame = jsonObject.optString(ConstParam.TYPE_GAME);
+                JSONArray childData = jsonObject.optJSONArray(ConstParam.GAME_OF_TYPE);
+
+                List<GameTypeModel> modelList = new ArrayList<>();
+                if (childData != null) {
+                    for (int j = 0; j < childData.length(); j++) {
+
+                        JSONObject jsonObjectChild = childData.optJSONObject(j);
+
+                        GameTypeModel gameTypeModelChild = new GameTypeModel();
+
+                        String gameTitile = jsonObjectChild.optString(ConstParam.NAME_GAME);
+                        String pictureGameLink = jsonObjectChild.optString(ConstParam.PICTURE_GAME);
+                        String id = jsonObjectChild.optString(ConstParam.ID);
+                        int status = jsonObjectChild.optInt(ConstParam.STATUS);
+
+                        gameTypeModelChild.setGameName(gameTitile);
+                        gameTypeModelChild.setPictureGame(pictureGameLink);
+                        gameTypeModelChild.setTypeGameTitile(typeGame);
+                        gameTypeModelChild.setId(id);
+                        gameTypeModelChild.setStatus(status);
+
+                        modelList.add(gameTypeModelChild);
+                    }
+                    gameTypeModel.hmGameType.put(typeGame, modelList);
+                    gameTypeModel.arrLstGameType.add(typeGame);
+                }
+            }
+        }
+
+        return gameTypeModel;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.full_name);
+        dest.writeInt(this.privacy);
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public GameTypeModel createFromParcel(Parcel in) {
+            return new GameTypeModel(in);
+        }
+
+        public GameTypeModel[] newArray(int size) {
+            return new GameTypeModel[size];
+        }
+    };
+}
+

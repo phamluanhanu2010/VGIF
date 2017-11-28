@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cus_border_lout"
+        android:gravity="center"
+        android:padding="@dimen/size_Margin_Space_Dialog">
+
+        <TextView
+            android:id="@+id/tv_Msg_Content"
+            style="@style/CusTextViewContentTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:gravity="center"
+            android:text="Thay đổi câu hỏi bảo mật thành công" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_Msg_Content"
+            android:layout_margin="@dimen/size_Margin_Space"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_Main"
+                android:layout_width="@dimen/size_btn_update_w"
+                android:layout_height="@dimen/size_btn_update_h"
+                android:layout_margin="@dimen/size_Margin_Space"
+                android:background="@drawable/cus_button_green"
+                android:paddingLeft="@dimen/size_Margin_Space_Dialog"
+                android:paddingRight="@dimen/size_Margin_Space_Dialog"
+                android:text="@string/btn_Dialog_Home"
+                android:textColor="@color/color_White" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

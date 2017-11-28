@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_Gray"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/tmp_header_bar" />
+
+    <ScrollView
+        android:id="@+id/scrollView_Wrap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/lout_Active"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_White"
+            android:orientation="vertical"
+            android:padding="@dimen/size_Margin_Space">
+
+
+            <LinearLayout
+                android:id="@+id/lout_Deactive"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/size_Margin_Space"
+                android:background="@color/color_White"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Input_Text_h"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_Icon_Edit"
+                        android:layout_height="@dimen/size_Icon_Edit"
+                        android:layout_marginRight="@dimen/size_Margin_Space"
+                        android:background="@drawable/ic_input_password" />
+
+                    <EditText
+                        android:fontFamily="@string/font_family_regular"
+                        android:inputType="textPassword"
+                        android:id="@+id/edit_Old_Password"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/hint_Old_Password"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <include layout="@layout/tmp_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Input_Text_h"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/size_Icon_Edit"
+                        android:layout_height="@dimen/size_Icon_Edit"
+                        android:layout_marginRight="@dimen/size_Margin_Space"
+                        android:src="@drawable/ic_input_password_star" />
+
+                    <EditText
+                        android:fontFamily="@string/font_family_regular"
+                        android:inputType="textPassword"
+                        android:id="@+id/edit_New_Password"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/hint_New_Password"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <include layout="@layout/tmp_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Input_Text_h"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_Icon_Edit"
+                        android:layout_height="@dimen/size_Icon_Edit"
+                        android:layout_marginRight="@dimen/size_Margin_Space"
+                        android:src="@drawable/ic_input_password_star" />
+
+                    <EditText
+                        android:fontFamily="@string/font_family_regular"
+                        android:inputType="textPassword"
+                        android:id="@+id/edit_ReInput_New_Password"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/hint_New_Password_2"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <include layout="@layout/tmp_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Input_Text_h"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/sp_Otp_Type"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+
+                <include layout="@layout/tmp_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_Input_Text_h"
+                    android:background="@android:color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_Icon_Edit"
+                        android:layout_height="@dimen/size_Icon_Edit"
+                        android:layout_marginRight="@dimen/size_Margin_Space"
+                        android:src="@drawable/ic_input_qr" />
+
+                    <EditText
+                        android:inputType="number"
+                        android:id="@+id/edit_Otp_Code"
+                        style="@style/CusTextViewContentTheme"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/hint_Account_Otp_Code2"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <include layout="@layout/tmp_line" />
+
+                <TextView
+                    android:id="@+id/tv_Otp_Guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/size_Text_Label_Small" />
+
+                <TextView
+                    android:id="@+id/tv_Error_Message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_Margin_Space"
+                    android:textColor="@color/color_Red_Light" />
+
+                <Button
+                    android:id="@+id/btn_Change_Password"
+                    android:layout_width="@dimen/size_btn_update_w"
+                    android:layout_height="@dimen/size_btn_update_h"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/size_Margin_Space"
+                    android:background="@drawable/cus_button_green"
+                    android:text="@string/title_Btn_Change_Password"
+                    android:textColor="@color/color_White" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
